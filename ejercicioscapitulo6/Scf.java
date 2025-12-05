@@ -85,7 +85,7 @@ class Filosofo extends Thread {
 public class Scf {
 
     public static void main(String[] args) {
-        System.out.println("--- Iniciando la Cena de los Filósofos ---");
+        System.out.println("Iniciando la Cena de los Filósofos...");
         Mesa mesa = new Mesa();
         
         for (int i = 0; i < Mesa.N_FILOSOFOS; i++) {

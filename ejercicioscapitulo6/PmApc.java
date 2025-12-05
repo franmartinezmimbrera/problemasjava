@@ -1,15 +1,11 @@
 // fichero PmApc.java 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ArrayBlockingQueue;
-
 /**
  * Clase que representa al hilo Productor.
- * Envía "mensajes" (los ítems) a un buzón.
- */
+ * Envía "mensajes" (los ítems) a un buzón.*/
 class Productor extends Thread {
-    
     private BlockingQueue<Integer> buzon;
-
     public Productor(BlockingQueue<Integer> buzon) {
         this.buzon = buzon;
     }
@@ -30,16 +26,12 @@ class Productor extends Thread {
 }
 /**
  * Clase que representa al hilo Consumidor.
- * Recibe "mensajes" (los ítems) del buzón.
- */
+ * Recibe "mensajes" (los ítems) del buzón.*/
 class Consumidor extends Thread {
-    
     private BlockingQueue<Integer> buzon;
-
     public Consumidor(BlockingQueue<Integer> buzon) {
         this.buzon = buzon;
     }
-
     @Override
     public void run() {
         try {
@@ -59,7 +51,6 @@ public class PmApc {
     public static void main(String[] args) {
         
         final int CAPACIDAD_BUZON = 5;
-        
         BlockingQueue<Integer> buzon = new ArrayBlockingQueue<>(CAPACIDAD_BUZON);
 
         Productor p1 = new Productor(buzon);

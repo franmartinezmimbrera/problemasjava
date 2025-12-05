@@ -1,169 +1,129 @@
 // fichero Mle.java 
-
-class FicheroSimuladoMonitor {
-
-    private String contenido = "[Contenido inicial del fichero]";
-    
-    // Variables de estado del monitor
-    private int activeReaders = 0;  
-    private int waitingWriters = 0; 
-    private boolean isWriting = false; 
-
-    /**
-     * Lógica de entrada para un Lector.
-     * Un lector debe esperar si hay un escritor escribiendo O si hay escritores esperando.
-     */
-    public synchronized void startLeer(String nombre) throws InterruptedException {
-        System.out.println(nombre + " quiere leer...");
-        
-       
-        while (isWriting || waitingWriters > 0) {
-            System.out.println(nombre + " espera (Hay escritores esperando o escribiendo).");
-            wait(); 
-        }
-        
-        activeReaders++;
-    }
-
-    /**
-     * Lógica de salida para un Lector.
-     */
-    public synchronized void endLeer(String nombre) {
-        System.out.println(nombre + " terminó de leer.");
-        activeReaders--;
-        
-        if (activeReaders == 0) {
-            notifyAll(); 
-        }
-    }
-    /**
-     * Lógica de entrada para un Escritor.
-     * Un escritor debe esperar si hay lectores leyendo O si hay otro escritor escribiendo.
-     */
-    public synchronized void startEscribir(String nombre) throws InterruptedException {
-        System.out.println(nombre + " quiere escribir...");
-        waitingWriters++;
-        
-        while (isWriting || activeReaders > 0) {
-            System.out.println(nombre + " espera (Hay lectores activos o alguien escribiendo).");
-            wait(); 
-        }
-        
-        waitingWriters--; 
-        isWriting = true;
-        System.out.println(nombre + " está ESCRIBIENDO...");
-    }
-
-    /**
-     * Lógica de salida para un Escritor.
-     */
-    public synchronized void endEscribir(String nombre) {
-        System.out.println(nombre + " terminó de escribir.");
-        isWriting = false;
-    
-        notifyAll();
-    }
-    
-    /**
-     * Simula la acción de leer.
-     * No necesita ser 'synchronized' porque el protocolo start/end ya lo protege.
-     */
-    public void doLeer(String nombre) {
-        System.out.println(nombre + " está LEYENDO. Contenido: " + contenido + " (Lectores concurrentes: " + activeReaders + ")");
-    }
-
-    /**
-     * Simula la acción de escribir.
-     * Debe ser llamado *mientras* se tiene el bloqueo de escritura.
-     * Lo hacemos 'synchronized' por seguridad, aunque el protocolo ya lo protege.
-     */
-    public synchronized void doEscribir(String nombre) {
-        this.contenido = "[Escrito por " + nombre + "]";
-    }
-}
-
 /**
- * Hilo Lector (Modificado para usar el protocolo start/end del monitor)
- */
-class Lector extends Thread {
-    private final FicheroSimuladoMonitor fichero;
-    private final String nombre;
-
-    public Lector(FicheroSimuladoMonitor f, String n) {
-        this.fichero = f;
-        this.nombre = n;
-    }
+ * Monitor para el problema Lector-Escritor con Prioridad a Escritores.*/
+class BaseDeDatosMonitor {
+    private int dato = 0;
     
-    @Override
-    public void run() {
+    // Variables de estado del Monitor
+    private int lectoresActivos = 0;
+    private boolean escribiendo = false;
+    private int escritoresEsperando = 0; // Crucial para la prioridad
+    /**
+     * Protocolo de entrada para lectores.
+     * Si hay un escritor escribiendo O escritores esperando, el lector se bloquea.
+     */
+    private synchronized void iniciarLectura() throws InterruptedException {
+        // PRIORIDAD ESCRITOR: Si hay alguien escribiendo O hay escritores en la fila
+        while (escribiendo || escritoresEsperando > 0) {
+            wait();
+        }
+        lectoresActivos++;
+    }
+    /**
+     * Protocolo de salida para lectores.
+     */
+    private synchronized void terminarLectura() {
+        lectoresActivos--;
+        // Si soy el último lector, aviso a los hilos esperando (posibles escritores)
+        if (lectoresActivos == 0) {
+            notifyAll();
+        }
+    }
+    /**
+     * Protocolo de entrada para escritores.
+     */
+    private synchronized void iniciarEscritura() throws InterruptedException {
+        // Me anoto como esperando para bloquear a nuevos lectores (Prioridad)
+        escritoresEsperando++;
+        
         try {
-            while (true) {
-
-                fichero.startLeer(nombre);
-                
-                fichero.doLeer(nombre);
-                Thread.sleep((long) (Math.random() * 500)); 
-                
-                fichero.endLeer(nombre);
-                
-                Thread.sleep((long) (Math.random() * 2000));
+            // Mientras haya alguien leyendo o escribiendo, espero
+            while (lectoresActivos > 0 || escribiendo) {
+                wait();
+            }
+        } finally {
+            // Ya voy a dejar de esperar y pasar a escribir (o si salta excepción)
+             escritoresEsperando--;
+        }
+        
+        escribiendo = true;
+    }
+    /**
+     * Protocolo de salida para escritores.
+     */
+    private synchronized void terminarEscritura() {
+        escribiendo = false;
+        notifyAll(); // Despierto a todos (lectores o escritores) para que compitan
+    }
+    public void leer() {
+        try {
+            iniciarLectura();
+            try {
+                // SECCIÓN CRÍTICA (Lectura) - Fuera del synchronized para permitir concurrencia
+                System.out.println(Thread.currentThread().getName() + 
+                                 " - Leído: " + dato + " (Lectores activos: " + lectoresActivos + ")");
+                // Simulamos tiempo de lectura
+                 Thread.sleep((long) (Math.random()* 1000));
+            } finally {
+                terminarLectura();
             }
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Thread.currentThread().interrupt();
         }
     }
-}
-
-/**
- * Hilo Escritor (Modificado para usar el protocolo start/end del monitor)
- */
-class Escritor extends Thread {
-    private final FicheroSimuladoMonitor fichero;
-    private final String nombre;
-
-    public Escritor(FicheroSimuladoMonitor f, String n) {
-        this.fichero = f;
-        this.nombre = n;
-    }
-    
-    @Override
-    public void run() {
+    public void escribir(int valor) {
         try {
-            while (true) {
-                fichero.startEscribir(nombre);
-                
-                Thread.sleep((long) (Math.random() * 1500)); 
-                fichero.doEscribir(nombre);
-                                
-                fichero.endEscribir(nombre);
-
-                Thread.sleep((long) (Math.random() * 3000)); 
+            iniciarEscritura();
+            try {
+                // SECCIÓN CRÍTICA (Escritura)
+                this.dato = valor;
+                System.out.println(Thread.currentThread().getName() + 
+                                 " - Escribiendo: " + dato + " (Lectores: " + lectoresActivos + ", Escritores esp: " + escritoresEsperando + ")");
+                 // Simulamos tiempo de escritura
+                Thread.sleep((long) (Math.random() * 1500));
+            } finally {
+                terminarEscritura();
             }
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Thread.currentThread().interrupt();
         }
     }
 }
-/**
- * Fichero principal que contiene todas las clases para la simulación
- * de Lectores-Escritores con Prioridad para Escritores, usando Monitores.
- */
-public class Sle {
-
+public class Mle {
     public static void main(String[] args) {
-
-        FicheroSimuladoMonitor fichero = new FicheroSimuladoMonitor();
-
-        System.out.println("Iniciando Simulación (Prioridad Escritores con Monitores)");
-
+        System.out.println("\n--- LECTOR-ESCRITOR CON MONITORES (PRIORIDAD ESCRITOR) ---\n");
         
-        new Escritor(fichero, "Escritor A").start();
-        new Escritor(fichero, "Escritor B").start();
+        final int NUM_LECTORES = 5;
+        final int NUM_ESCRITORES = 2;
+        BaseDeDatosMonitor bd = new BaseDeDatosMonitor();
 
-        new Lector(fichero, "Lector 1").start();
-        new Lector(fichero, "Lector 2").start();
-        new Lector(fichero, "Lector 3").start();
-        new Lector(fichero, "Lector 4").start();
+        // Hilos Lectores
+        for (int i = 1; i <= NUM_LECTORES; i++) {
+            new Thread(() -> {
+                try {
+                    while (true) {
+                        Thread.sleep((long)(Math.random() * 1000));
+                        bd.leer();
+                    }
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }, "Lector-" + i).start();
+        }
+
+        // Hilos Escritores
+        for (int i = 1; i <= NUM_ESCRITORES; i++) {
+            new Thread(() -> {
+                try {
+                    while (true) {
+                        Thread.sleep((long)(Math.random() * 2000));
+                        int valorAleatorio = (int)(Math.random() * 100);
+                        bd.escribir(valorAleatorio);
+                    }
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }, "Escritor-" + i).start();
+        }
     }
 }
-

@@ -1,77 +1,107 @@
-// fichero Mcf.java 
+//fichero Mfc.java
 import java.util.Random;
 
-//La clase Mesa gestiona los recursos compartidos (palillos)
-//usando el patrón Monitor (synchronized, wait, notifyAll)
-
-class Mesa {
+/**
+ * Monitor que implementa la solución del CAMARERO (Árbitro).
+ * Clave: Limita el número de comensales sentados a (N-1) para evitar interbloqueo.
+ */
+class MesaCamarero {
 
     public static final int N_FILOSOFOS = 5;
+    // Semáforo lógico (aforo): Máximo 4 filósofos sentados a la vez
+    private static final int AFORO_MAXIMO = N_FILOSOFOS - 1; 
+    
     private final boolean[] palillosLibres = new boolean[N_FILOSOFOS];
+    private int comensalesSentados = 0; // Contador de gente sentada a la mesa
 
-    public Mesa() {
+    public MesaCamarero() {
         for (int i = 0; i < N_FILOSOFOS; i++) {
             palillosLibres[i] = true;
         }
     }
-    //Método sincronizado para que un filósofo intente coger los palillos
-    //Un filósofo esperará (wait) HASTA QUE ambos palillos estén libres 
+
+    /**
+     * Intenta coger los palillos.
+     * 1. Primero pide permiso para sentarse (si hay 4 sentados, espera).
+     * 2. Luego intenta coger los palillos (si están ocupados, espera).
+     */
     public synchronized void cogerPalillos(int id) throws InterruptedException {
-      
-        int palilloIzquierdo = id;
-        int palilloDerecho = (id + 1) % N_FILOSOFOS;
+        int izq = id;
+        int der = (id + 1) % N_FILOSOFOS;
 
-        System.out.println("    Filósofo " + id + " intenta coger palillos (" + palilloIzquierdo + " y " + palilloDerecho + ")");
-        while (!palillosLibres[palilloIzquierdo] || !palillosLibres[palilloDerecho]) {
-            System.out.println("    Filósofo " + id + " ESPERA (Palillos ocupados).");
-            wait(); 
+        // Si la mesa está casi llena (4 personas), el 5º se queda de pie esperando.
+        while (comensalesSentados >= AFORO_MAXIMO) {
+            System.out.println("    Filósofo " + id + " ESPERA DE PIE (Mesa llena: " + comensalesSentados + " comensales).");
+            wait();
+        }       
+        // Si pasa aquí, se sienta
+        comensalesSentados++;
+        System.out.println("Filósofo " + id + " se sienta a la mesa (Hay " + comensalesSentados + " sentados).");
+
+        // Ahora que está sentado, intenta coger los tenedores.
+        while (!palillosLibres[izq] || !palillosLibres[der]) {
+            System.out.println("    Filósofo " + id + " espera cubiertos (Sentado, pero sin tenedores).");
+            wait();
         }
-        palillosLibres[palilloIzquierdo] = false;
-        palillosLibres[palilloDerecho] = false;
+
+        // Reserva los tenedores
+        palillosLibres[izq] = false;
+        palillosLibres[der] = false;
         
-        System.out.println("Filósofo " + id + " cogió sus palillos.");
+        System.out.println("Filósofo " + id + " COGIÓ los palillos " + izq + " y " + der);
     }
-    //Método sincronizado para que un filósofo suelte los palillos
+
+    /**
+     * Suelta los palillos y se levanta de la mesa.
+     */
     public synchronized void soltarPalillos(int id) {
-     
-        int palilloIzquierdo = id;
-        int palilloDerecho = (id + 1) % N_FILOSOFOS;
+        int izq = id;
+        int der = (id + 1) % N_FILOSOFOS;
 
-        palillosLibres[palilloIzquierdo] = true;
-        palillosLibres[palilloDerecho] = true;
+        // Libera tenedores
+        palillosLibres[izq] = true;
+        palillosLibres[der] = true;
 
-        System.out.println("Filósofo " + id + " soltó palillos (" + palilloIzquierdo + " y " + palilloDerecho + ")");   
+        comensalesSentados--; // Deja un hueco libre en la mesa
+        
+        System.out.println("Filósofo " + id + " soltó palillos y SE LEVANTÓ (Quedan " + comensalesSentados + " sentados).");
+        
+        // Avisa a todos:
+        // - A los que esperan de pie (wait del aforo)
+        // - A los que esperan cubiertos (wait de palillos)
         notifyAll();
     }
 }
-//El hilo Filosofo, que alterna entre pensar y comer
-class Filosofo extends Thread {
 
+class Filosofo extends Thread {
     private final int id;
-    private final Mesa mesa; 
+    private final MesaCamarero mesa;
     private final Random random = new Random();
 
-    public Filosofo(int id, Mesa mesa) {
+    public Filosofo(int id, MesaCamarero mesa) {
         this.id = id;
         this.mesa = mesa;
     }
+
     private void pensar() throws InterruptedException {
-        System.out.println("Filósofo " + id + " está PENSANDO.");
-        Thread.sleep(random.nextInt(2000) + 1000);
+        System.out.println("Filósofo " + id + " está PENSANDO ...");
+        Thread.sleep(random.nextInt(1000) + 500); 
     }
+
     private void comer() throws InterruptedException {
-        System.out.println("Filósofo " + id + " está COMIENDO.");
-        Thread.sleep(random.nextInt(1500) + 1000);
+        System.out.println("Filósofo " + id + " está COMIENDO ...");
+        Thread.sleep(random.nextInt(1000) + 500); 
     }
+
     @Override
     public void run() {
         try {
             while (true) {
-                
                 pensar();
                 System.out.println("Filósofo " + id + " tiene HAMBRE.");
-                mesa.cogerPalillos(id); 
-                comer();                
+                
+                mesa.cogerPalillos(id);
+                comer();
                 mesa.soltarPalillos(id);
             }
         } catch (InterruptedException e) {
@@ -79,13 +109,17 @@ class Filosofo extends Thread {
         }
     }
 }
-//Clase principal para ejecutar la simulación
+
 public class Mcf {
     public static void main(String[] args) {
-        System.out.println("Iniciando la Cena de los Filósofos (con Monitores)");
+        System.out.println("EJEMPLO CENA DE LOS FILÓSOFOS (SOLUCIÓN DEL CAMARERO/AFORO) ");
+        System.out.println("  Mesa para " + MesaCamarero.N_FILOSOFOS + " filósofos.");
+        System.out.println("  El camarero solo deja sentarse a " + (MesaCamarero.N_FILOSOFOS - 1) + " a la vez.\n");
+
+        MesaCamarero mesa = new MesaCamarero();
         
-        Mesa mesa = new Mesa();
-        for (int i = 0; i < Mesa.N_FILOSOFOS; i++) {
+        // Creamos y arrancamos los hilos
+        for (int i = 0; i < MesaCamarero.N_FILOSOFOS; i++) {
             new Filosofo(i, mesa).start();
         }
     }

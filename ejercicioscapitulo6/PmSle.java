@@ -141,7 +141,7 @@ class Controlador extends Thread {
         }
     }
 }
-// --- Hilo Lector
+//  Hilo Lector
 class Lector extends Thread {
     private final FicheroSimulado fichero; 
     private final Controlador controlador; 
@@ -174,8 +174,8 @@ class Lector extends Thread {
             e.printStackTrace();
         }
     }
-
-// --- Hilo Escritor (Cliente) 
+}
+// Hilo Escritor (Cliente) 
 class Escritor extends Thread {
     private final FicheroSimulado fichero; 
     private final Controlador controlador; 
@@ -209,7 +209,6 @@ class Escritor extends Thread {
         }
     }
 }
-
 public class PmSle { 
 
     public static void main(String[] args) {

@@ -16,9 +16,7 @@ public class BinomioSuma {
       System.out.print("Introduce el valor de b: ");
       double b = scanner.nextDouble();
 
-
       double resultado = Math.pow(a, 2) + 2 * a * b + Math.pow(b, 2);
-
 
       System.out.printf("El resultado de (a+b)^2 es: %.4f%n", resultado);
 

@@ -25,18 +25,16 @@ class PeticionSoltar implements Mensaje {
         this.idFilosofo = id;
     }
 }
-/**
- * La clase Mesa es ahora un hilo servidor activo.
- * Gestiona el estado de los palillos y las peticiones.
- */
-class Mesa extends Thread {
+
+
+class MesaActor extends Thread {
     
     public static final int N_FILOSOFOS = 5;
     private final BlockingQueue<Mensaje> buzonPeticiones = new LinkedBlockingQueue<>();
     private final boolean[] palillosLibres = new boolean[N_FILOSOFOS];
     private final Queue<PeticionCoger> filosofosEnEspera = new LinkedList<>();
 
-    public Mesa() {
+    public MesaActor() {
         for (int i = 0; i < N_FILOSOFOS; i++) {
             palillosLibres[i] = true; 
         }
@@ -74,7 +72,7 @@ class Mesa extends Thread {
             p.canalRespuesta.put(true); 
         } else {
             // Poner en espera
-            System.out.println("Mesa: Filósofo " + id + "en espera (palillos ocupados).");
+            System.out.println("Mesa: Filósofo " + id + " en espera (palillos ocupados).");
             filosofosEnEspera.add(p);
         }
     }
@@ -86,6 +84,7 @@ class Mesa extends Thread {
         palillosLibres[der] = true;
         System.out.println("Mesa: Filósofo " + id + " soltó palillos.");
 
+        // Revisar cola de espera
         int enEsperaSize = filosofosEnEspera.size();
         for (int i = 0; i < enEsperaSize; i++) {
             PeticionCoger peticion = filosofosEnEspera.poll(); 
@@ -95,7 +94,6 @@ class Mesa extends Thread {
             int p_der = (p_id + 1) % N_FILOSOFOS;
 
             if (palillosLibres[p_izq] && palillosLibres[p_der]) {
-
                 palillosLibres[p_izq] = false;
                 palillosLibres[p_der] = false;
                 System.out.println("Mesa: Concediendo palillos a " + p_id + " (estaba en espera).");
@@ -106,18 +104,15 @@ class Mesa extends Thread {
         }
     }
 }
-/**
- * El hilo Filosofo, que alterna entre pensar y comer.
- * Ahora es un cliente que envía peticiones a la Mesa.
- */
-class Filosofo extends Thread {
+
+class FilosofoActor extends Thread {
 
     private final int id;
-    private final Mesa mesa; 
+    private final MesaActor mesa; 
     private final Random random = new Random();
     private final BlockingQueue<Boolean> miBuzon = new ArrayBlockingQueue<>(1);
 
-    public Filosofo(int id, Mesa mesa) {
+    public FilosofoActor(int id, MesaActor mesa) {
         this.id = id;
         this.mesa = mesa;
     }
@@ -148,12 +143,15 @@ class Filosofo extends Thread {
         }
     }
 }
+
 public class PmAcf {
     public static void main(String[] args) {
-        System.out.println("Iniciando la Cena de los Filósofos (Paso de Mensajes) ---");
-        Mesa mesa = new Mesa();
-        for (int i = 0; i < Mesa.N_FILOSOFOS; i++) {
-            new Filosofo(i, mesa).start();
+        System.out.println("Iniciando la Cena de los Filósofos (Paso de Mensajes Asíncrono)....");
+        
+        // Usamos las clases renombradas
+        MesaActor mesa = new MesaActor();
+        for (int i = 0; i < MesaActor.N_FILOSOFOS; i++) {
+            new FilosofoActor(i, mesa).start();
         }
     }
 }

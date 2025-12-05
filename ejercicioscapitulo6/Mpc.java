@@ -1,103 +1,137 @@
 // fichero Mpc.java 
+import java.util.LinkedList;
+import java.util.Queue;
 
-//Clase que representa el buffer compartido limitado para un Monitor.
-class Buffer {
-
-    private int[] buffer;         // El array que simula el búfer
-    private int size;             // Tamaño máximo del búfer
-    private int in, out;          // Punteros para el búfer circular
-    private int count;            // Contador de items en el buffer
-
-    public Buffer(int size) {
-        this.size = size;
-        this.buffer = new int[size];
-        this.in = 0;   
-        this.out = 0;
-        this.count = 0; 
-
+class BufferCompartido {
+    private final Queue<Integer> buffer;
+    private final int capacidad;
+    
+    public BufferCompartido(int capacidad) {
+        this.buffer = new LinkedList<>();
+        this.capacidad = capacidad;
     }
-    //Método para que el Productor inserte un item.
-    public synchronized void put(int item) throws InterruptedException {
+    /**
+     * Método sincronizado para producir un elemento.
+     * El productor espera si el buffer está lleno.*/
+    public synchronized void producir(int item) throws InterruptedException {
+        // Esperar mientras el buffer esté lleno
+        // Usamos while (no if) para proteger contra "spurious wakeups"
+        while (buffer.size() == capacidad) {
+            System.out.println(Thread.currentThread().getName() + 
+                             " - Buffer lleno. Productor esperando...");
+            wait(); // Libera el lock y espera
+        }
+        // Agregar el item al buffer
+        buffer.add(item);
+        System.out.println(Thread.currentThread().getName() + 
+                         " - Producido: " + item + " (Buffer: " + buffer.size() + "/" + capacidad + ")");
         
-        while (count == size) {
-            System.out.println("Productor esperando (Buffer lleno)...");
+        // Notificar a los consumidores que hay datos disponibles
+        notifyAll(); // Despierta a todos los hilos en espera
+    }
+    /**
+     * Método sincronizado para consumir un elemento.
+     * El consumidor espera si el buffer está vacío.*/
+    public synchronized int consumir() throws InterruptedException {
+        // Esperar mientras el buffer esté vacío
+        while (buffer.isEmpty()) {
+            System.out.println(Thread.currentThread().getName() + 
+                             " - Buffer vacío. Consumidor esperando...");
             wait();
         }
-        buffer[in] = item;
-        System.out.println("Productor produce: " + item + " en posición " + in);
-        in = (in + 1) % size;
-        count++; 
-        
-        notifyAll();
-    }
-    //Método para que el Consumidor extraiga un item.
-    public synchronized int get() throws InterruptedException {
-        
-        while (count == 0) {
-            System.out.println("Consumidor esperando (Buffer vacío)...");
-            wait();
-        }
-        int item = buffer[out];
-        System.out.println("Consumidor consume: " + item + " de posición " + out);
-        out = (out + 1) % size;
-        count--; 
-        notifyAll();
+        // Extraer el item del buffer
+        int item = buffer.poll();
+        System.out.println(Thread.currentThread().getName() + 
+                         " - Consumido: " + item + " (Buffer: " + buffer.size() + "/" + capacidad + ")");
+        // Notificar a los productores que hay espacio disponible
+        notifyAll();       
         return item;
     }
 }
-//Clase que representa al hilo Productor.
-class Productor extends Thread {
-    private Buffer buffer;
-
-    public Productor(Buffer buffer) {
+/**
+ * Clase Productor que genera elementos y los coloca en el buffer.
+ */
+class Productor implements Runnable {
+    private final BufferCompartido buffer;
+    private final int itemsAPrducir;
+    
+    public Productor(BufferCompartido buffer, int itemsAProducir) {
         this.buffer = buffer;
-    }
-    @Override
-    public void run() {
-        int item = 0;
-        try {
-            while (true) {
-                item++; 
-                Thread.sleep((int) (Math.random() * 1000));
-                buffer.put(item);
-            }
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
-    }
-}
-//Clase que representa al hilo Consumidor.
-class Consumidor extends Thread {
-    private Buffer buffer;
-
-    public Consumidor(Buffer buffer) {
-        this.buffer = buffer;
-    }
+        this.itemsAPrducir = itemsAProducir;
+    }   
     @Override
     public void run() {
         try {
-            while (true) {
-                int item = buffer.get();               
-                Thread.sleep((int) (Math.random() * 1500)); 
+            for (int i = 1; i <= itemsAPrducir; i++) {
+                // Simular tiempo de producción
+                Thread.sleep((long)(Math.random() * 1000));
+                
+                buffer.producir(i);
             }
+            System.out.println(Thread.currentThread().getName() + " - ¡Producción completada!");
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
+            System.err.println("Productor interrumpido");
         }
     }
 }
-public class Mpc {
+/**
+ * Clase Consumidor que extrae elementos del buffer y los procesa.
+ */
+class Consumidor implements Runnable {
+    private final BufferCompartido buffer;
+    private final int itemsAConsumir;
+    
+    public Consumidor(BufferCompartido buffer, int itemsAConsumir) {
+        this.buffer = buffer;
+        this.itemsAConsumir = itemsAConsumir;
+    }
+    @Override
+    public void run() {
+        try {
+            for (int i = 0; i < itemsAConsumir; i++) {
+                int item = buffer.consumir();
+                // Simular tiempo de procesamiento
+                Thread.sleep((long)(Math.random() * 1500));
+            }
+            System.out.println(Thread.currentThread().getName() + " - ¡Consumo completado!");
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            System.err.println("Consumidor interrumpido");
+        }
+    }
+}
+public class Mpc{
     public static void main(String[] args) {
-        
-        final int BUFFER_SIZE = 5;
-        Buffer buffer = new Buffer(BUFFER_SIZE);
 
-        Productor p1 = new Productor(buffer);
-        p1.start();      
-        Consumidor c1 = new Consumidor(buffer);
-        c1.start();
-        Productor p2 = new Productor(buffer);
-        p2.start();
-        Consumidor c2 = new Consumidor(buffer);
-        c2.start();
+        System.out.println("\nEJEMPLO: MONITOR USANDO WAIT/NOTIFY\n");
+        
+        final int CAPACIDAD = 5;
+        final int ITEMS_TOTALES = 10;
+        
+        BufferCompartido buffer = new BufferCompartido(CAPACIDAD);
+        
+        // Crear 2 productores y 2 consumidores
+        Thread productor1 = new Thread(new Productor(buffer, ITEMS_TOTALES/2), "Productor-1");
+        Thread productor2 = new Thread(new Productor(buffer, ITEMS_TOTALES/2), "Productor-2");
+        Thread consumidor1 = new Thread(new Consumidor(buffer, ITEMS_TOTALES/2), "Consumidor-1");
+        Thread consumidor2 = new Thread(new Consumidor(buffer, ITEMS_TOTALES/2), "Consumidor-2");
+        
+        // Iniciar todos los hilos
+        productor1.start();
+        productor2.start();
+        consumidor1.start();
+        consumidor2.start();
+        
+        // Esperar a que terminen
+        try {
+            productor1.join();
+            productor2.join();
+            consumidor1.join();
+            consumidor2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("\n¡Ejemplo completado!\n");
     }
 }

@@ -3,7 +3,7 @@ public class MergeSort {
     //Función auxiliar para combinar (merge) dos sub-arrays ordenados.
     //Esta función es la parte "Combinar" del "Divide y Vencerás".
     public static void merge(int[] arr, int inicio, int medio, int fin) {
-        
+       
         int n1 = medio - inicio + 1;
         int n2 = fin - medio;
         int total_temp = n1 + n2;
@@ -55,9 +55,7 @@ public class MergeSort {
             System.out.print(val + " ");
         }
         System.out.println();
-
         mergeSort(datos, 0, datos.length - 1);
-
         System.out.println("\nVector ordenado con MergeSort:");
         for (int val : datos) {
             System.out.print(val + " ");

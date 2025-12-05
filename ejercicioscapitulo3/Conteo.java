@@ -1,5 +1,6 @@
 // fichero Conteo.java
 // Lee varias frases, las convierte a mayúsculas y cuenta las vocales.
+
 import java.util.Scanner;
 public class Conteo {
 
@@ -33,10 +34,13 @@ public class Conteo {
         }
         return contador;
     }
+
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
         String[] listaFrases = new String[NUM_FRASES];
         int totalVocales = 0;
+
         System.out.printf("Introduce %d frases/líneas de texto:%n", NUM_FRASES);
         for (int i = 0; i < NUM_FRASES; i++) {
             System.out.printf("Frase %d: ", i + 1);
@@ -47,6 +51,7 @@ public class Conteo {
             }
             listaFrases[i] = linea;
         }
+
         for (int i = 0; i < NUM_FRASES; i++) {
             String frase = listaFrases[i];
             String mayus = convertirAMayusculas(frase);
@@ -55,6 +60,7 @@ public class Conteo {
             System.out.printf("Frase %d (MAYÚS): '%s' -> Vocales contadas: %d%n",
                     i + 1, mayus, vocales);
         }
+        
         System.out.printf("El número total de vocales en todas las frases es: %d%n", totalVocales);
         sc.close();
     }
