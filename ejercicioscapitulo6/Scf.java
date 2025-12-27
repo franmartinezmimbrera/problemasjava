@@ -39,12 +39,12 @@ class Filosofo extends Thread {
     }
 
     private void pensar() throws InterruptedException {
-        System.out.println("FilÛsofo " + id + " est· PENSANDO.");
+        System.out.println("Fil√≥sofo " + id + " est√° PENSANDO.");
         Thread.sleep(random.nextInt(2000) + 1000);
     }
 
     private void comer() throws InterruptedException {
-        System.out.println("FilÛsofo " + id + " est· COMIENDO.");
+        System.out.println("Fil√≥sofo " + id + " est√° COMIENDO.");
         Thread.sleep(random.nextInt(1500) + 1000);
     }
 
@@ -55,29 +55,29 @@ class Filosofo extends Thread {
                 
                 pensar();
 
-                System.out.println("FilÛsofo " + id + " tiene HAMBRE y quiere entrar al comedor...");
+                System.out.println("Fil√≥sofo " + id + " tiene HAMBRE y quiere entrar al comedor...");
                 mesa.sala.acquire();
-                System.out.println("FilÛsofo " + id + " entrÛ al comedor.");
+                System.out.println("Fil√≥sofo " + id + " entr√≥ al comedor.");
 
                 mesa.palillos[palilloIzquierdo].acquire();
-                System.out.println("FilÛsofo " + id + " cogiÛ palillo izq (" + palilloIzquierdo + ")");
+                System.out.println("Fil√≥sofo " + id + " cogi√≥ palillo izq (" + palilloIzquierdo + ")");
                 
                 Thread.sleep(100); 
                 
                 mesa.palillos[palilloDerecho].acquire();
-                System.out.println("FilÛsofo " + id + " cogiÛ palillo der (" + palilloDerecho + ")");
+                System.out.println("Fil√≥sofo " + id + " cogi√≥ palillo der (" + palilloDerecho + ")");
 
                 comer();                
 
-                System.out.println("FilÛsofo " + id + " terminÛ de comer. Suelta palillos.");
+                System.out.println("Fil√≥sofo " + id + " termin√≥ de comer. Suelta palillos.");
                 mesa.palillos[palilloDerecho].release();
                 mesa.palillos[palilloIzquierdo].release();
 
                 mesa.sala.release();
-                System.out.println("FilÛsofo " + id + " saliÛ del comedor.");
+                System.out.println("Fil√≥sofo " + id + " sali√≥ del comedor.");
             }
         } catch (InterruptedException e) {
-            System.out.println("FilÛsofo " + id + " fue interrumpido.");
+            System.out.println("Fil√≥sofo " + id + " fue interrumpido.");
         }
     }
 }
@@ -85,7 +85,7 @@ class Filosofo extends Thread {
 public class Scf {
 
     public static void main(String[] args) {
-        System.out.println("Iniciando la Cena de los FilÛsofos...");
+        System.out.println("Iniciando la Cena de los Fil√≥sofos...");
         Mesa mesa = new Mesa();
         
         for (int i = 0; i < Mesa.N_FILOSOFOS; i++) {

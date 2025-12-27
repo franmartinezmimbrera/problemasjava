@@ -40,6 +40,6 @@ public class AumentarVector {
             System.out.print(val + " ");
         }
         System.out.println();
-        System.out.println("Memoria liberada autom·ticamente por el Garbage Collector.");
+        System.out.println("Memoria liberada autom√°ticamente por el Garbage Collector.");
     }
 }

@@ -3,8 +3,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.Semaphore;
 /**
- * Buffer con control de acceso usando sem·foros.
- * Los sem·foros controlan explÌcitamente el n˙mero de espacios disponibles y elementos presentes en el buffer.*/
+ * Buffer con control de acceso usando sem√°foros.
+ * Los sem√°foros controlan expl√≠citamente el n√∫mero de espacios disponibles y elementos presentes en el buffer.*/
 class BufferConSemaforos {
     private final Queue<Integer> buffer;
     private final Semaphore espaciosDisponibles; 
@@ -18,76 +18,76 @@ class BufferConSemaforos {
         this.mutexBuffer = new Semaphore(1); 
     }
     /**
-     * Producir usando sem·foros para control de concurrencia.
+     * Producir usando sem√°foros para control de concurrencia.
      */
     public void producir(int item) throws InterruptedException {
         // Esperar por un espacio disponible
         espaciosDisponibles.acquire();
-        // Entrar en secciÛn crÌtica
+        // Entrar en secci√≥n cr√≠tica
         mutexBuffer.acquire();
         try {
             buffer.add(item);
             System.out.println(Thread.currentThread().getName() + 
                              " - Producido: " + item + " (Buffer: " + buffer.size() + ")");
         } finally {
-            // Salir de secciÛn crÌtica
+            // Salir de secci√≥n cr√≠tica
             mutexBuffer.release();
         }
-        // SeÒalar que hay un nuevo elemento disponible
+        // Se√±alar que hay un nuevo elemento disponible
         elementosDisponibles.release();
     }
     /**
-     * Consumir usando sem·foros para control de concurrencia.
+     * Consumir usando sem√°foros para control de concurrencia.
      */
     public int consumir() throws InterruptedException {
         // Esperar por un elemento disponible
         elementosDisponibles.acquire();
         int item;
-        // Entrar en secciÛn crÌtica
+        // Entrar en secci√≥n cr√≠tica
         mutexBuffer.acquire();
         try {
             item = buffer.poll();
             System.out.println(Thread.currentThread().getName() + 
                              " - Consumido: " + item + " (Buffer: " + buffer.size() + ")");
         } finally {
-            // Salir de secciÛn crÌtica
+            // Salir de secci√≥n cr√≠tica
             mutexBuffer.release();
         }
-        // SeÒalar que hay un nuevo espacio disponible
+        // Se√±alar que hay un nuevo espacio disponible
         espaciosDisponibles.release();
         return item;
     }
 }
 public class Spc{
     public static void main(String[] args) {
-        System.out.println("\n EJEMPLO: USANDO SEM¡FOROS\n");
+        System.out.println("\n EJEMPLO: USANDO SEM√ÅFOROS\n");
         final int CAPACIDAD = 5;
         final int ITEMS_TOTALES = 10;
         BufferConSemaforos buffer = new BufferConSemaforos(CAPACIDAD);
-        // Productores con sem·foros
+        // Productores con sem√°foros
         Thread productor = new Thread(() -> {
             try {
                 for (int i = 1; i <= ITEMS_TOTALES; i++) {
                     Thread.sleep((long)(Math.random() * 800));
                     buffer.producir(i);
                 }
-                System.out.println(Thread.currentThread().getName() + " - °ProducciÛn completada!");
+                System.out.println(Thread.currentThread().getName() + " - ¬°Producci√≥n completada!");
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
-        }, "Productor-Sem·foro");
-        // Consumidor con sem·foros
+        }, "Productor-Sem√°foro");
+        // Consumidor con sem√°foros
         Thread consumidor = new Thread(() -> {
             try {
                 for (int i = 0; i < ITEMS_TOTALES; i++) {
                     int item = buffer.consumir();
                     Thread.sleep((long)(Math.random() * 1200));
                 }
-                System.out.println(Thread.currentThread().getName() + " - °Consumo completado!");
+                System.out.println(Thread.currentThread().getName() + " - ¬°Consumo completado!");
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
-        }, "Consumidor-Sem·foro");
+        }, "Consumidor-Sem√°foro");
         productor.start();
         consumidor.start();        
         try {
@@ -96,6 +96,6 @@ public class Spc{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }   
-        System.out.println("\n°Ejemplo completado!\n");
+        System.out.println("\n¬°Ejemplo completado!\n");
     }
 }

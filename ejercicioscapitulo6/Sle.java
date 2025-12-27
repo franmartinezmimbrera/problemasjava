@@ -2,7 +2,7 @@ import java.util.concurrent.Semaphore;
 
 /**
  * Recurso compartido con control de acceso Lector-Escritor y Prioridad para Escritores.
- * * LÛgica de Prioridad Escritor:
+ * * L√≥gica de Prioridad Escritor:
  * - Cuando un escritor quiere escribir, bloquea la entrada de nuevos lectores (usando entradaLectores).
  * - Los lectores que ya estaban leyendo terminan normalmente.
  * - Una vez que no quedan lectores ni escritores previos, el escritor accede.*/
@@ -10,15 +10,15 @@ class BaseDeDatos {
 
     private int dato = 0; // El recurso compartido
     
-    // Sem·foros y Contadores
+    // Sem√°foros y Contadores
     private int lectoresActivos = 0;
     private int escritoresEsperando = 0;    
     // Mutex para proteger las variables contadoras
     private final Semaphore mutexLectores = new Semaphore(1);
     private final Semaphore mutexEscritores = new Semaphore(1);    
-    // Sem·foro para acceso exclusivo al recurso (escritura)
+    // Sem√°foro para acceso exclusivo al recurso (escritura)
     private final Semaphore recurso = new Semaphore(1);
-    // Sem·foro puerta para priorizar escritores (bloquea nuevos lectores)
+    // Sem√°foro puerta para priorizar escritores (bloquea nuevos lectores)
     private final Semaphore entradaLectores = new Semaphore(1); 
     /**
      * Escribir: Prioridad alta. Cierra la puerta a nuevos lectores.
@@ -33,10 +33,10 @@ class BaseDeDatos {
         }
         mutexEscritores.release();
 
-        // Espero posesiÛn exclusiva del recurso
+        // Espero posesi√≥n exclusiva del recurso
         recurso.acquire();  
         try {
-            // SECCI”N CRÕTICA DE ESCRITURA
+            // SECCI√ìN CR√çTICA DE ESCRITURA
             this.dato = nuevoValor;
             System.out.println(Thread.currentThread().getName() + 
                              " -Escribiendo: " + dato + " (Lectores: " + lectoresActivos + ", Escritores esp: " + escritoresEsperando + ")");
@@ -49,7 +49,7 @@ class BaseDeDatos {
         mutexEscritores.acquire();
         escritoresEsperando--;
         if (escritoresEsperando == 0) {
-            // Si no quedan m·s escritores esperando, abro la puerta a los lectores
+            // Si no quedan m√°s escritores esperando, abro la puerta a los lectores
             entradaLectores.release(); 
         }
         mutexEscritores.release();
@@ -58,7 +58,7 @@ class BaseDeDatos {
      * Leer: Debe pedir permiso (entradaLectores) por si hay escritores.
      */
     public int leer() throws InterruptedException {
-        // Pasar por la puerta (si hay escritores esperando, aquÌ se bloquea)
+        // Pasar por la puerta (si hay escritores esperando, aqu√≠ se bloquea)
         entradaLectores.acquire();
         entradaLectores.release(); // Liberar inmediatamente para que pasen otros lectores (si no hay escritores)
 
@@ -72,16 +72,16 @@ class BaseDeDatos {
         mutexLectores.release();
         int lectura = -1;        
         try {
-            // SECCI”N CRÕTICA DE LECTURA (TÈcnicamente concurrente con otros lectores)
+            // SECCI√ìN CR√çTICA DE LECTURA (T√©cnicamente concurrente con otros lectores)
             lectura = this.dato;
             System.out.println(Thread.currentThread().getName() + 
-                             " - LeÌdo: " + lectura + " (Lectores activos: " + lectoresActivos + ")");
+                             " - Le√≠do: " + lectura + " (Lectores activos: " + lectoresActivos + ")");
         } finally {
             // Protocolo de salida de lectores
             mutexLectores.acquire();
             lectoresActivos--;
             if (lectoresActivos == 0) {
-                // El ˙ltimo lector libera el recurso para los escritores
+                // El √∫ltimo lector libera el recurso para los escritores
                 recurso.release();
             }
             mutexLectores.release();

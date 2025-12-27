@@ -3,7 +3,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ArrayBlockingQueue;
 /**
  * Clase que representa al hilo Productor.
- * Envía "mensajes" (los ítems) a un buzón.*/
+ * EnvÃ­a "mensajes" (los Ã­tems) a un buzÃ³n.*/
 class Productor extends Thread {
     private BlockingQueue<Integer> buzon;
     public Productor(BlockingQueue<Integer> buzon) {
@@ -16,7 +16,7 @@ class Productor extends Thread {
             while (true) {
                 item++; 
                 Thread.sleep((int) (Math.random() * 1000));
-                System.out.println("Productor produce y envía: " + item);
+                System.out.println("Productor produce y envÃ­a: " + item);
                 buzon.put(item); 
             }
         } catch (InterruptedException e) {
@@ -26,7 +26,7 @@ class Productor extends Thread {
 }
 /**
  * Clase que representa al hilo Consumidor.
- * Recibe "mensajes" (los ítems) del buzón.*/
+ * Recibe "mensajes" (los Ã­tems) del buzÃ³n.*/
 class Consumidor extends Thread {
     private BlockingQueue<Integer> buzon;
     public Consumidor(BlockingQueue<Integer> buzon) {

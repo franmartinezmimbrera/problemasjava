@@ -5,7 +5,7 @@ import java.math.BigInteger;
 
 public class FactorialR {
 
-    // Función recursiva que calcula el factorial recursivo
+    // FunciÃ³n recursiva que calcula el factorial recursivo
     public static BigInteger factorialBigRecursivo(int n) {
         if (n == 0 || n == 1) {return BigInteger.ONE;}
         return BigInteger.valueOf(n).multiply(factorialBigRecursivo(n - 1));
@@ -14,22 +14,22 @@ public class FactorialR {
 
         Scanner scanner = new Scanner(System.in);
         int numero;
-        System.out.print("Introduce un número entero no negativo: ");
+        System.out.print("Introduce un nÃºmero entero no negativo: ");
         try {
             numero = scanner.nextInt();
         } catch (InputMismatchException e) {
-            System.err.println("Error: Entrada no válida. Debe introducir un número entero.");
+            System.err.println("Error: Entrada no vÃ¡lida. Debe introducir un nÃºmero entero.");
             scanner.close();
             return;
         } finally {
             scanner.close(); 
         }
         if (numero < 0) {
-            System.err.println("Error: El factorial solo está definido para números no negativos.");
+            System.err.println("Error: El factorial solo estÃ¡ definido para nÃºmeros no negativos.");
             return;
         }
         if (numero > 1500) { 
-            System.out.println("Advertencia: Para números muy grandes, la recursividad podría fallar por desbordamiento de pila.");
+            System.out.println("Advertencia: Para nÃºmeros muy grandes, la recursividad podrÃ­a fallar por desbordamiento de pila.");
         }
         try {
             BigInteger resultado = factorialBigRecursivo(numero);
@@ -37,8 +37,8 @@ public class FactorialR {
             
         } catch (StackOverflowError e) {
             System.err.println("FATAL ERROR: Desbordamiento de la pila (StackOverflowError).");
-            System.err.printf("El número %d es demasiado grande para calcularse de forma recursiva.%n", numero);
-            System.err.println("Intente usar un número menor o la implementación iterativa.");
+            System.err.printf("El nÃºmero %d es demasiado grande para calcularse de forma recursiva.%n", numero);
+            System.err.println("Intente usar un nÃºmero menor o la implementaciÃ³n iterativa.");
         }
     }
 }

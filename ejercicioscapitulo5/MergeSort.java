@@ -1,7 +1,7 @@
 // fichero MergeSort.java 
 public class MergeSort {
-    //Función auxiliar para combinar (merge) dos sub-arrays ordenados.
-    //Esta función es la parte "Combinar" del "Divide y Vencerás".
+    //FunciÃ³n auxiliar para combinar (merge) dos sub-arrays ordenados.
+    //Esta funciÃ³n es la parte "Combinar" del "Divide y VencerÃ¡s".
     public static void merge(int[] arr, int inicio, int medio, int fin) {
        
         int n1 = medio - inicio + 1;
@@ -39,7 +39,7 @@ public class MergeSort {
             k++;
         }
     }
-     //Función recursiva principal de MergeSort.
+     //FunciÃ³n recursiva principal de MergeSort.
     public static void mergeSort(int[] arr, int inicio, int fin) {
         if (inicio < fin) {
             int medio = inicio + (fin - inicio) / 2;

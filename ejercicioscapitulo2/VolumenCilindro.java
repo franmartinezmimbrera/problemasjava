@@ -9,22 +9,22 @@ public class VolumenCilindro {
         
     try (Scanner scanner = new Scanner(System.in)) {
       
-      System.out.print("Introduzca el di·metro, en metros: ");
+      System.out.print("Introduzca el di√°metro, en metros: ");
       double diametro = scanner.nextDouble(); 
       System.out.print("Introduzca la altura, en metros: ");
       double altura = scanner.nextDouble(); 
       
       if (diametro <= 0 || altura <= 0) {
-          System.err.println("Error: El di·metro y la altura deben ser valores positivos.");
+          System.err.println("Error: El di√°metro y la altura deben ser valores positivos.");
           return;
       }
       
       double radio = diametro / 2.0;    
       double volumen = Math.PI * Math.pow(radio, 2) * altura;
-      System.out.printf("El volumen del cilindro es de %.4f metros c˙bicos%n", volumen);
+      System.out.printf("El volumen del cilindro es de %.4f metros c√∫bicos%n", volumen);
 
     } catch (InputMismatchException e) {
-        System.err.println("Error: Por favor, introduzca valores numÈricos v·lidos.");
+        System.err.println("Error: Por favor, introduzca valores num√©ricos v√°lidos.");
       
     } catch (Exception e) {
         System.err.println("Ha ocurrido un error inesperado.");

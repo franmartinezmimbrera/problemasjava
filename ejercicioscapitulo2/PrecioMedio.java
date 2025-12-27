@@ -16,7 +16,7 @@ public class PrecioMedio {
             precio3 = sc.nextDouble();
             entradaValida = true;
       } catch (InputMismatchException e) {
-            System.err.println("Error: deben ser valores numéricos");
+            System.err.println("Error: deben ser valores numÃ©ricos");
       }
       if (entradaValida) {
             if (precio1 < 0 || precio2 < 0 || precio3 < 0) {

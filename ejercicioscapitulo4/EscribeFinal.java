@@ -1,5 +1,5 @@
 // fichero EscribeFinal.java
-// Ejercicio para escribir al final de un fichero de texto una nueva línea.
+// Ejercicio para escribir al final de un fichero de texto una nueva lÃ­nea.
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,8 +12,8 @@ public class EscribeFinal {
 
         try (PrintWriter archivo = new PrintWriter(new FileWriter(nombreArchivo, true))) {
 
-            archivo.println("Esta es la línea AÑADIDA al final (Append).");
-            System.out.println("\nSe ha añadido una línea al final de '" + nombreArchivo + "'.");
+            archivo.println("Esta es la lÃ­nea AÃ‘ADIDA al final (Append).");
+            System.out.println("\nSe ha aÃ±adido una lÃ­nea al final de '" + nombreArchivo + "'.");
 
         } catch (IOException e) {
             System.err.println("Error al abrir el archivo " + nombreArchivo + " en modo append: " + e.getMessage());

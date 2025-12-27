@@ -14,10 +14,10 @@ public class PesetasEuros {
             System.out.printf("Su valor en euros es: %.2f%n", euros);                        
         } 
         catch (InputMismatchException e) {
-            System.err.println("Error de entrada: Debe introducir un valor numÈrico v·lido.");
+            System.err.println("Error de entrada: Debe introducir un valor num√©rico v√°lido.");
         }
         catch (Exception e) {
-            System.err.println("OcurriÛ un error inesperado durante la conversiÛn.");
+            System.err.println("Ocurri√≥ un error inesperado durante la conversi√≥n.");
         }
         finally {
             sc.close();

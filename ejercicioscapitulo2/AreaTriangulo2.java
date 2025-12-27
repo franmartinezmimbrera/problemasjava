@@ -1,5 +1,5 @@
 // fichero AreaTriangulo2.java
-// Este programa calcula el ·rea de un tri·ngulo equil·tero a partir de uno de sus lados
+// Este programa calcula el √°rea de un tri√°ngulo equil√°tero a partir de uno de sus lados
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
@@ -9,16 +9,16 @@ public class AreaTriangulo2 {
         
     try (Scanner scanner = new Scanner(System.in)) {
       
-      System.out.print("Introduce un lado del tri·ngulo equil·tero: ");
+      System.out.print("Introduce un lado del tri√°ngulo equil√°tero: ");
       double lado = scanner.nextDouble();
       if (lado <= 0) {
-          System.err.println("Error: El lado del tri·ngulo debe ser un n˙mero positivo.");
+          System.err.println("Error: El lado del tri√°ngulo debe ser un n√∫mero positivo.");
           return;
       }
       double area = (Math.sqrt(3) / 4) * lado * lado;
-      System.out.printf("El ·rea del tri·ngulo equil·tero de lado %.4f es: %.6f%n", lado, area);
+      System.out.printf("El √°rea del tri√°ngulo equil√°tero de lado %.4f es: %.6f%n", lado, area);
     } catch (InputMismatchException e) {
-        System.err.println("Error: Por favor, introduce un valor numÈrico v·lido para el lado.");
+        System.err.println("Error: Por favor, introduce un valor num√©rico v√°lido para el lado.");
     } catch (Exception e) {
         System.err.println("Ha ocurrido un error inesperado.");
         e.printStackTrace();

@@ -1,5 +1,5 @@
 // fichero AreaTriangulo2.java
-// Este programa calcula el área de un triáungulo a partir de sus lados mediante la fórmula de Herón
+// Este programa calcula el Ã¡rea de un triÃ¡ungulo a partir de sus lados mediante la fÃ³rmula de HerÃ³n
 
 import java.util.Scanner;
 import java.util.InputMismatchException;
@@ -27,13 +27,13 @@ public class AreaTriangulo2 {
         l3x = sc.nextDouble();            
         if (esTrianguloValido(l1x, l2x, l3x)) {
             double area = AreaTrianguloHeron(l1x, l2x, l3x);
-            System.out.printf("\nEl área del triángulo con lados %.2f, %.2f y %.2f es: %.2f\n", l1x, l2x, l3x, area);
+            System.out.printf("\nEl Ã¡rea del triÃ¡ngulo con lados %.2f, %.2f y %.2f es: %.2f\n", l1x, l2x, l3x, area);
         } else {
-            System.out.println("\nError: Las longitudes ingresadas NO pueden formar un triángulo (Fallo de la Desigualdad Triangular).");
+            System.out.println("\nError: Las longitudes ingresadas NO pueden formar un triÃ¡ngulo (Fallo de la Desigualdad Triangular).");
         }
         
       } catch (InputMismatchException e) {
-          System.out.println("\nError de entrada: Debes introducir un valor numérico válido para las longitudes.");
+          System.out.println("\nError de entrada: Debes introducir un valor numÃ©rico vÃ¡lido para las longitudes.");
       } finally {
           sc.close();
       }

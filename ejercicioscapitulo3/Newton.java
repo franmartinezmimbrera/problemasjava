@@ -1,5 +1,5 @@
 // fichero Newtong.java
-// Calcula la expansiÛn del binomio de Newton (a + b)^n
+// Calcula la expansi√≥n del binomio de Newton (a + b)^n
 import java.util.Scanner;
 import java.math.BigInteger;
 
@@ -16,7 +16,7 @@ public class Newton {
         return resultado;
     }
 
-    // C·lculo de C(n, r) = n! / (r! * (n - r)!)
+    // C√°lculo de C(n, r) = n! / (r! * (n - r)!)
     public static BigInteger nCr(int n, int r) {
         if (r < 0 || r > n)
             return BigInteger.ZERO;
@@ -28,13 +28,13 @@ public class Newton {
         return factN.divide(factR.multiply(factNR));
     }
 
-    // ExpansiÛn del binomio de Newton: (a + b)^n
+    // Expansi√≥n del binomio de Newton: (a + b)^n
     public static void binomioDeNewton(BigInteger a, BigInteger b, int n) {
         if (n < 0) {
             System.out.println("Error: El exponente N debe ser no negativo.");
             return;
         }
-        System.out.printf("ExpansiÛn de (%s + %s)^%d:%n", a.toString(), b.toString(), n);
+        System.out.printf("Expansi√≥n de (%s + %s)^%d:%n", a.toString(), b.toString(), n);
         BigInteger sumaTotal = BigInteger.ZERO;
         for (int k = 0; k <= n; k++) {
             BigInteger coef = nCr(n, k);
@@ -47,20 +47,20 @@ public class Newton {
                     coef.toString(), a.toString(), n - k, b.toString(), k, termino.toString());
         }
 
-        System.out.printf("Valor Total (por suma de tÈrminos) = %s%n", sumaTotal.toString());
+        System.out.printf("Valor Total (por suma de t√©rminos) = %s%n", sumaTotal.toString());
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         try {
-            System.out.print("Introduce un n˙mero entero para a: ");
+            System.out.print("Introduce un n√∫mero entero para a: ");
             BigInteger a = sc.nextBigInteger();
 
-            System.out.print("Introduce un n˙mero entero para b: ");
+            System.out.print("Introduce un n√∫mero entero para b: ");
             BigInteger b = sc.nextBigInteger();
 
-            System.out.print("Introduce un n˙mero entero no negativo para n: ");
+            System.out.print("Introduce un n√∫mero entero no negativo para n: ");
             int n = sc.nextInt();
 
             if (n < 0) {
@@ -68,13 +68,13 @@ public class Newton {
                 return;
             }
             if (n > 1000) {
-                System.out.println("Advertencia: El c·lculo puede tardar mucho tiempo para n > 1000.");
+                System.out.println("Advertencia: El c√°lculo puede tardar mucho tiempo para n > 1000.");
             }
 
             binomioDeNewton(a, b, n);
 
         } catch (Exception e) {
-            System.out.println("Error: Entrada no v·lida.");
+            System.out.println("Error: Entrada no v√°lida.");
         } finally {
             sc.close();
         }

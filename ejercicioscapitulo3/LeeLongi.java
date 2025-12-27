@@ -9,14 +9,14 @@ public class LeeLongi {
         System.out.println("Introduzca cadena:");
         while (true) {
             cadena = sc.nextLine();
-            cadena = cadena.stripTrailing(); // elimina saltos de línea y espacios al final
+            cadena = cadena.stripTrailing(); // elimina saltos de lÃ­nea y espacios al final
             int len = cadena.length();
             if (len == 0) {
                 break;
             }
             System.out.printf("La cadena contiene %d caracteres.%n", len);
             String cadenaResultado = cadena + ".txt";
-            System.out.printf("Concatenación: %s%n", cadenaResultado);
+            System.out.printf("ConcatenaciÃ³n: %s%n", cadenaResultado);
             System.out.println("Introduzca cadena (o solo Enter para terminar):");
         }
         sc.close();

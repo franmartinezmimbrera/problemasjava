@@ -25,7 +25,7 @@ class PeticionSoltar implements Mensaje {
 }
 /**
  * La clase Mesa es un hilo servidor activo.
- * Gestiona el estado de los palillos y las peticiones SÕNCRONAS.*/
+ * Gestiona el estado de los palillos y las peticiones S√çNCRONAS.*/
 class Mesa extends Thread {
     
     public static final int N_FILOSOFOS = 5;
@@ -47,7 +47,7 @@ class Mesa extends Thread {
     }
     @Override
     public void run() {
-        System.out.println("Mesa (Servidor SÌNCRONO) iniciada. Esperando peticiones...");
+        System.out.println("Mesa (Servidor S√≠NCRONO) iniciada. Esperando peticiones...");
         try {
             while (true) {
                 Mensaje msg = buzonPeticiones.take();
@@ -71,10 +71,10 @@ class Mesa extends Thread {
         if (palillosLibres[izq] && palillosLibres[der]) {
             palillosLibres[izq] = false;
             palillosLibres[der] = false;
-            System.out.println("Mesa: Concediendo palillos a FilÛsofo " + id);
+            System.out.println("Mesa: Concediendo palillos a Fil√≥sofo " + id);
             p.canalRespuesta.put(true); 
         } else {
-            System.out.println("Mesa: FilÛsofo " + id + " en espera (palillos ocupados).");
+            System.out.println("Mesa: Fil√≥sofo " + id + " en espera (palillos ocupados).");
             filosofosEnEspera.add(p);
         }
     }
@@ -85,7 +85,7 @@ class Mesa extends Thread {
 
         palillosLibres[izq] = true;
         palillosLibres[der] = true;
-        System.out.println("Mesa: FilÛsofo " + id + " soltÛ palillos.");
+        System.out.println("Mesa: Fil√≥sofo " + id + " solt√≥ palillos.");
 
         int enEsperaSize = filosofosEnEspera.size();
         for (int i = 0; i < enEsperaSize; i++) {
@@ -122,11 +122,11 @@ class Filosofo extends Thread {
         this.mesa = mesa;
     }
     private void pensar() throws InterruptedException {
-        System.out.println("FilÛsofo " + id + " est· PENSANDO.");
+        System.out.println("Fil√≥sofo " + id + " est√° PENSANDO.");
         Thread.sleep(random.nextInt(2000) + 1000);
     }
     private void comer() throws InterruptedException {
-        System.out.println("FilÛsofo " + id + " est· COMIENDO.");
+        System.out.println("Fil√≥sofo " + id + " est√° COMIENDO.");
         Thread.sleep(random.nextInt(1500) + 1000);
     }
     @Override
@@ -134,23 +134,23 @@ class Filosofo extends Thread {
         try {
             while (true) {
                 pensar();  
-                System.out.println("    FilÛsofo " + id + " tiene HAMBRE y pide palillos.");
+                System.out.println("    Fil√≥sofo " + id + " tiene HAMBRE y pide palillos.");
                 PeticionCoger peticion = new PeticionCoger(id, miBuzon);
                 mesa.enviarPeticion(peticion);              
                 miBuzon.take();
-                System.out.println("FilÛsofo " + id + " obtuvo permiso y palillos.");
+                System.out.println("Fil√≥sofo " + id + " obtuvo permiso y palillos.");
                 comer();                
-                System.out.println("FilÛsofo " + id + " termin? de comer. Suelta palillos.");
+                System.out.println("Fil√≥sofo " + id + " termin? de comer. Suelta palillos.");
                 mesa.enviarPeticion(new PeticionSoltar(id));
             }
         } catch (InterruptedException e) {
-            System.out.println("FilÛsofo " + id + " fue interrumpido.");
+            System.out.println("Fil√≥sofo " + id + " fue interrumpido.");
         }
     }
 }
 public class PmScf { 
     public static void main(String[] args) {
-        System.out.println("Iniciando la Cena de los FilÛsofos (Paso de Mensajes SÕNCRONO)...");
+        System.out.println("Iniciando la Cena de los Fil√≥sofos (Paso de Mensajes S√çNCRONO)...");
         Mesa mesa = new Mesa();
         for (int i = 0; i < Mesa.N_FILOSOFOS; i++) {
             new Filosofo(i, mesa).start();

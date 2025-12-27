@@ -1,5 +1,5 @@
 // fichero LadoTriangulo.java 
-// Este programa calcula el valor del lado a de un triangulo rect·ngulo usando el valor del lado b y la hipotenusa h 
+// Este programa calcula el valor del lado a de un triangulo rect√°ngulo usando el valor del lado b y la hipotenusa h 
 import java.util.Scanner;
 import java.util.InputMismatchException;
 public class LadoTriangulo {
@@ -20,7 +20,7 @@ public class LadoTriangulo {
       double a = Math.sqrt(Math.pow(h, 2) - Math.pow(b, 2));
       System.out.printf("El valor del lado 'a' es: %.4f%n", a);      
     } catch (InputMismatchException e) {
-       System.err.println("Introduzca valores numÈricos v·lidos");
+       System.err.println("Introduzca valores num√©ricos v√°lidos");
     } catch (Exception e) {
         System.err.println("Ha ocurrido un error inesperado.");
         e.printStackTrace();

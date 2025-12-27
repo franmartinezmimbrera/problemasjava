@@ -1,5 +1,5 @@
 // fichero Mcd1.java
-// Este programa calcula el MCD dados 2 números mediante una función
+// Este programa calcula el MCD dados 2 nÃºmeros mediante una funciÃ³n
 import java.util.Scanner;
 import java.util.InputMismatchException;
 public class Mcd1 {
@@ -22,7 +22,7 @@ public class Mcd1 {
             long resu = MCD(a, b);
   System.out.println("EL M.C.D de " + a + " y " + b + " es: " + resu);
         } catch (InputMismatchException e) {
-       System.out.println("Debe introducir números enteros válidos.");
+       System.out.println("Debe introducir nÃºmeros enteros vÃ¡lidos.");
         } finally {sc.close();}
     }
 }

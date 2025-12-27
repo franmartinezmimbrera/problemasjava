@@ -24,7 +24,7 @@ class BaseDeDatosMonitor {
      */
     private synchronized void terminarLectura() {
         lectoresActivos--;
-        // Si soy el ˙ltimo lector, aviso a los hilos esperando (posibles escritores)
+        // Si soy el √∫ltimo lector, aviso a los hilos esperando (posibles escritores)
         if (lectoresActivos == 0) {
             notifyAll();
         }
@@ -42,7 +42,7 @@ class BaseDeDatosMonitor {
                 wait();
             }
         } finally {
-            // Ya voy a dejar de esperar y pasar a escribir (o si salta excepciÛn)
+            // Ya voy a dejar de esperar y pasar a escribir (o si salta excepci√≥n)
              escritoresEsperando--;
         }
         
@@ -59,9 +59,9 @@ class BaseDeDatosMonitor {
         try {
             iniciarLectura();
             try {
-                // SECCI”N CRÕTICA (Lectura) - Fuera del synchronized para permitir concurrencia
+                // SECCI√ìN CR√çTICA (Lectura) - Fuera del synchronized para permitir concurrencia
                 System.out.println(Thread.currentThread().getName() + 
-                                 " - LeÌdo: " + dato + " (Lectores activos: " + lectoresActivos + ")");
+                                 " - Le√≠do: " + dato + " (Lectores activos: " + lectoresActivos + ")");
                 // Simulamos tiempo de lectura
                  Thread.sleep((long) (Math.random()* 1000));
             } finally {
@@ -75,7 +75,7 @@ class BaseDeDatosMonitor {
         try {
             iniciarEscritura();
             try {
-                // SECCI”N CRÕTICA (Escritura)
+                // SECCI√ìN CR√çTICA (Escritura)
                 this.dato = valor;
                 System.out.println(Thread.currentThread().getName() + 
                                  " - Escribiendo: " + dato + " (Lectores: " + lectoresActivos + ", Escritores esp: " + escritoresEsperando + ")");

@@ -15,7 +15,7 @@ public class QSort2 {
 
         Arrays.sort(numeros);
 
-        System.out.print("Vector después de sort: ");
+        System.out.print("Vector despuÃ©s de sort: ");
         for (int val : numeros) {
             System.out.print(val + " ");
         }

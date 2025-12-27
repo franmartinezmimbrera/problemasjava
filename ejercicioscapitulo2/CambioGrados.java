@@ -1,5 +1,5 @@
 // fichero CambioGrados.java 
-// Este programa cambia grados centígrados por fahrenheit
+// Este programa cambia grados centÃ­grados por fahrenheit
 import java.util.Scanner;
 import java.util.InputMismatchException;
 public class CambioGrados {
@@ -10,16 +10,16 @@ public class CambioGrados {
         double centigrados = 0;
         boolean entradaValida = false;       
         try {
-            System.out.print("Introducir valor en grados Centígrados: ");
+            System.out.print("Introducir valor en grados CentÃ­grados: ");
             centigrados = sc.nextDouble();
             entradaValida = true;
         } catch (InputMismatchException e) {
-            System.err.println("Error de entrada: Debe introducir un valor numérico válido.");
+            System.err.println("Error de entrada: Debe introducir un valor numÃ©rico vÃ¡lido.");
         }
         if (entradaValida) {   
-            // Cálculo usando la fórmula: F = (C * 9/5) + 32
+            // CÃ¡lculo usando la fÃ³rmula: F = (C * 9/5) + 32
             double fahrenheit = (centigrados * FACTOR_MULTIPLICACION) + SUMA_FINAL;
-            System.out.printf("El resultado en grados Fahrenheit es: %.1f°F%n", fahrenheit);
+            System.out.printf("El resultado en grados Fahrenheit es: %.1fÂ°F%n", fahrenheit);
         }
         sc.close();
     }

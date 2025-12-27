@@ -1,5 +1,5 @@
 // fichero Multiplo3.java
-// Este programa dice si un número es múltiplo de 3 y par
+// Este programa dice si un nÃºmero es mÃºltiplo de 3 y par
 import java.util.Scanner;
 
 public class Multiplo3 {
@@ -7,17 +7,17 @@ public class Multiplo3 {
 
         Scanner sc = new Scanner(System.in);
         try {
-            System.out.print("Introduzca un número: ");
+            System.out.print("Introduzca un nÃºmero: ");
             long numero = sc.nextLong(); 
             if (numero % 3 == 0 && numero % 2 == 0) {
-                System.out.println("El número " + numero + " es múltiplo de 3 y también es par (Múltiplo de 6).");
+                System.out.println("El nÃºmero " + numero + " es mÃºltiplo de 3 y tambiÃ©n es par (MÃºltiplo de 6).");
             } else if (numero % 3 == 0) {
-                System.out.println("El número " + numero + " es múltiplo de 3.");
+                System.out.println("El nÃºmero " + numero + " es mÃºltiplo de 3.");
             } else {
-                System.out.println("El número " + numero + " NO es múltiplo de 3.");
+                System.out.println("El nÃºmero " + numero + " NO es mÃºltiplo de 3.");
             }
         } catch (java.util.InputMismatchException e) {
-            System.out.println("Error: debe introducir un número entero.");
+            System.out.println("Error: debe introducir un nÃºmero entero.");
         } finally {
             sc.close(); 
         }

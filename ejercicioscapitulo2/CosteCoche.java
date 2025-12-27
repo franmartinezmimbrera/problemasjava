@@ -7,18 +7,18 @@ public class CosteCoche {
   public static void main(String[] args) {       
     Scanner scanner = new Scanner(System.in);
     double costeCoche, pvAntesImpuestos, precioTotal;
-    System.out.println("Introduce el coste del vehÌculo: ");
+    System.out.println("Introduce el coste del veh√≠culo: ");
     try {
       costeCoche = scanner.nextDouble();
       if (costeCoche <= 0) {
-        System.err.println("Error: El coste del vehÌculo debe ser >0");
+        System.err.println("Error: El coste del veh√≠culo debe ser >0");
         return; 
       }
       pvAntesImpuestos = costeCoche * GANANCIA_EMPRESA;
       precioTotal = pvAntesImpuestos * IMPUESTO_IVA;
-      System.out.printf("El precio total del automÛvil es: %.2f%n", precioTotal);
+      System.out.printf("El precio total del autom√≥vil es: %.2f%n", precioTotal);
     } catch (InputMismatchException e) {
-        System.err.println("Error: Por favor, introduce un valor numÈrico v·lido.");
+        System.err.println("Error: Por favor, introduce un valor num√©rico v√°lido.");
     } catch (Exception e) {
         System.err.println("Ha ocurrido un error inesperado.");
         e.printStackTrace();

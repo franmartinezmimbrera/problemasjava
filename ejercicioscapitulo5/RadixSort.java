@@ -2,7 +2,7 @@
 import java.util.Arrays; 
 
 public class RadixSort {
-    //FunciÛn auxiliar: obtiene el m·ximo valor del array.
+    //Funci√≥n auxiliar: obtiene el m√°ximo valor del array.
     public static int getMax(int[] arr) {
         int n = arr.length;
         if (n == 0) return 0; 
@@ -14,7 +14,7 @@ public class RadixSort {
         }
         return max;
     }
-    // Algoritmo Counting Sort estable (OrdenaciÛn por Conteo).
+    // Algoritmo Counting Sort estable (Ordenaci√≥n por Conteo).
     public static void countingSort(int[] arr, int exp) {
         int n = arr.length;int[] output = new int[n];int[] count = new int[10];
         for (int i = 0; i < n; i++) {

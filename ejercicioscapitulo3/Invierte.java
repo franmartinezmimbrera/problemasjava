@@ -1,5 +1,5 @@
 // fichero Invierte.java
-// Invierte una cadena de texto sin usar métodos del lenguaje
+// Invierte una cadena de texto sin usar mÃ©todos del lenguaje
 
 import java.util.Scanner;
 

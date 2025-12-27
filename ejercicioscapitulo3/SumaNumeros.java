@@ -1,5 +1,5 @@
 // fichero SumaNumeros.java
-// Calcula la suma de números introducidos por teclado hasta que se introduce el número -50,
+// Calcula la suma de nÃºmeros introducidos por teclado hasta que se introduce el nÃºmero -50,
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
@@ -11,10 +11,10 @@ public class SumaNumeros {
       double suma = 0;
       double numero = 0;
     
-      System.out.println("Introduzca números para sumar. Escriba -50 para ver el resultado.");
+      System.out.println("Introduzca nÃºmeros para sumar. Escriba -50 para ver el resultado.");
       do {
           try {
-              System.out.print("Introduzca número: ");
+              System.out.print("Introduzca nÃºmero: ");
               if (sc.hasNextDouble()) {
                   numero = sc.nextDouble(); 
                   if (numero != -50) {
@@ -22,7 +22,7 @@ public class SumaNumeros {
                   }
               } else {
                   String entradaErronea = sc.next(); 
-                  System.out.println("Error: '" + entradaErronea + "' no es un número. Inténtelo de nuevo.");
+                  System.out.println("Error: '" + entradaErronea + "' no es un nÃºmero. IntÃ©ntelo de nuevo.");
                   numero = 0; 
               }
           } catch (Exception e) {
@@ -30,7 +30,7 @@ public class SumaNumeros {
               break; 
           }
       } while (numero != -50);
-      System.out.printf("La suma total de los números introducidos es: %.2f\n", suma); 
+      System.out.printf("La suma total de los nÃºmeros introducidos es: %.2f\n", suma); 
       sc.close();
     }
 }

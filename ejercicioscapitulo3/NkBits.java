@@ -1,5 +1,5 @@
 // fichero NkBits.java
-// Muestra los ˙ltimos k bits de un n˙mero entero 
+// Muestra los √∫ltimos k bits de un n√∫mero entero 
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
@@ -11,10 +11,10 @@ public class NkBits{
             return;
         }
         if (k > TAM_LONG) {
-            System.out.printf("Advertencia: k fue limitado al tamaÒo del tipo long (%d bits).%n", TAM_LONG);
+            System.out.printf("Advertencia: k fue limitado al tama√±o del tipo long (%d bits).%n", TAM_LONG);
             k = TAM_LONG; 
         }
-        System.out.printf("Los ˙ltimos %d bits de %d son: ", k, numero);
+        System.out.printf("Los √∫ltimos %d bits de %d son: ", k, numero);
         for (int i = k - 1; i >= 0; i--) {            
             long bit = (numero >>> i) & 1; 
             System.out.print(bit);
@@ -24,13 +24,13 @@ public class NkBits{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         try {
-            System.out.print("Introduce un n˙mero entero largo (long): ");
+            System.out.print("Introduce un n√∫mero entero largo (long): ");
             long num = sc.nextLong();
-            System.out.print("Introduce cu·ntos bits mostrar (k): ");
+            System.out.print("Introduce cu√°ntos bits mostrar (k): ");
             int k = sc.nextInt();
             mostrarUltimosKBits(num, k);
         } catch (InputMismatchException e) {
-            System.err.println("Error: Entrada no v·lida. Debe introducir valores numÈricos v·lidos.");
+            System.err.println("Error: Entrada no v√°lida. Debe introducir valores num√©ricos v√°lidos.");
         } catch (Exception e) {
              System.err.println("Error inesperado: " + e.getMessage());
         } finally {

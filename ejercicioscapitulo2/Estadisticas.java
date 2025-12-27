@@ -1,5 +1,5 @@
 // fichero Estadisticas.java
-// Este programa calcula estadísticas sobre alumnos
+// Este programa calcula estadÃ­sticas sobre alumnos
 import java.util.Scanner;
 import java.util.InputMismatchException;
 public class Estadisticas {
@@ -36,7 +36,7 @@ public class Estadisticas {
             System.out.printf("Porcentaje de notables: %.2f%%%n", porcentajeNotables);
             System.out.printf("Porcentaje de sobresalientes: %.2f%%%n", porcentajeSobresalientes);
         } catch (InputMismatchException e) {
-            System.err.println("Error: Introduce solo números enteros válidos.");
+            System.err.println("Error: Introduce solo nÃºmeros enteros vÃ¡lidos.");
         } finally {
             sc.close();
         }

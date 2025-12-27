@@ -1,5 +1,5 @@
 // fichero Mascara.java
-// Invierte (cambia 0?1 y 1?0) los últimos k bits de un número entero 
+// Invierte (cambia 0?1 y 1?0) los Ãºltimos k bits de un nÃºmero entero 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -29,17 +29,17 @@ public class Mascara {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         try {
-            System.out.print("Introduce un número entero largo (long): ");
+            System.out.print("Introduce un nÃºmero entero largo (long): ");
             long num = sc.nextLong();
-            System.out.print("Introduce cuántos bits invertir (k): ");
+            System.out.print("Introduce cuÃ¡ntos bits invertir (k): ");
             int k = sc.nextInt();
             long resultado = invertirUltimosKBits(num, k);
-            System.out.printf("Número resultante: %d%n", resultado);
-            System.out.print("Bits invertidos  (últimos " + k + "): ");
+            System.out.printf("NÃºmero resultante: %d%n", resultado);
+            System.out.print("Bits invertidos  (Ãºltimos " + k + "): ");
             mostrarUltimosKBits(resultado, k);
 
         } catch (InputMismatchException e) {
-            System.err.println("Error: Entrada no válida. Debe introducir valores numéricos válidos.");
+            System.err.println("Error: Entrada no vÃ¡lida. Debe introducir valores numÃ©ricos vÃ¡lidos.");
         } catch (Exception e) {
             System.err.println("Error inesperado: " + e.getMessage());
         } finally {

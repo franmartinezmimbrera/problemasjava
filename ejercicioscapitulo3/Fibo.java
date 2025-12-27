@@ -1,15 +1,15 @@
 // fichero Fibo.java
-// Calcula el n-enesimo número de Fibonacci.
+// Calcula el n-enesimo nÃºmero de Fibonacci.
 import java.util.Scanner;
 import java.math.BigInteger;
 
 public class Fibo {
 
-    // Función iterativa para calcular el n-ésimo número de Fibonacci.
+    // FunciÃ³n iterativa para calcular el n-Ã©simo nÃºmero de Fibonacci.
     public static BigInteger fibonacciIterativo(int n) {      
      
         if (n < 0) {
-            throw new IllegalArgumentException("El índice N debe ser no negativo.");
+            throw new IllegalArgumentException("El Ã­ndice N debe ser no negativo.");
         }
      
         if (n == 0) {
@@ -36,27 +36,27 @@ public class Fibo {
         Scanner scanner = new Scanner(System.in);
         int n;
 
-        System.out.print("Introduce el índice N: ");
+        System.out.print("Introduce el Ã­ndice N: ");
       
         try {
             n = scanner.nextInt();
         } catch (Exception e) {
-            System.err.println("Error: Entrada no válida. Debe introducir un número entero.");
+            System.err.println("Error: Entrada no vÃ¡lida. Debe introducir un nÃºmero entero.");
             scanner.close();
             return;
         }
         scanner.close();
 
         if (n < 0) {
-            System.err.println("Error: El índice N debe ser no negativo.");
+            System.err.println("Error: El Ã­ndice N debe ser no negativo.");
             return;
         }
         
         if (n > 10000) {
-             System.out.printf("Advertencia: El cálculo para N=%d puede tardar considerablemente.%n", n);
+             System.out.printf("Advertencia: El cÃ¡lculo para N=%d puede tardar considerablemente.%n", n);
         }
         BigInteger resultado = fibonacciIterativo(n);      
-        System.out.printf("%nEl %d-ésimo número de Fibonacci (iterativo BigInteger) es:%n%s%n", 
+        System.out.printf("%nEl %d-Ã©simo nÃºmero de Fibonacci (iterativo BigInteger) es:%n%s%n", 
                           n, resultado.toString());
     }
 }

@@ -9,18 +9,18 @@ class FicheroSimulado {
     private String contenido = "[Contenido inicial del fichero]";
     
     public void leer(String nombre) {
-        System.out.println(nombre + " est· LEYENDO: " + this.contenido);
+        System.out.println(nombre + " est√° LEYENDO: " + this.contenido);
         try {
             Thread.sleep((long) (Math.random() * 500));
         } catch (InterruptedException e) {}
     }
     public void escribir(String nombre) {
-        System.out.println(nombre + " est· ESCRIBIENDO...");
+        System.out.println(nombre + " est√° ESCRIBIENDO...");
         try {
             Thread.sleep((long) (Math.random() * 1500));
         } catch (InterruptedException e) {}
         this.contenido = "[Escrito por " + nombre + "]";
-        System.out.println("... " + nombre + " terminÛ de escribir.");
+        System.out.println("... " + nombre + " termin√≥ de escribir.");
     }
 }
 
@@ -65,7 +65,7 @@ class Controlador extends Thread {
     
     @Override
     public void run() {
-        System.out.println("Controlador de bloqueos (SÕNCRONO) iniciado.");
+        System.out.println("Controlador de bloqueos (S√çNCRONO) iniciado.");
         try {
             while (true) {
                 
@@ -215,7 +215,7 @@ public class PmSle {
 
         FicheroSimulado fichero = new FicheroSimulado();
         Controlador controlador = new Controlador();
-        System.out.println("Iniciando SimulaciÛn (Paso de Mensajes SÕNCRONO)");
+        System.out.println("Iniciando Simulaci√≥n (Paso de Mensajes S√çNCRONO)");
         
         new Escritor(fichero, controlador, "Escritor A").start();
         new Escritor(fichero, controlador, "Escritor B").start();

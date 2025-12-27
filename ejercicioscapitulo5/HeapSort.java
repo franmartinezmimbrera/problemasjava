@@ -5,8 +5,8 @@ public class HeapSort {
         arr[i] = arr[j];
         arr[j] = t;
     }
-    // Función Heapify: restaura la propiedad de Max-Heap en un subárbol
-    //con raíz en 'i' dentro de un array de tamaño 'n'.
+    // FunciÃ³n Heapify: restaura la propiedad de Max-Heap en un subÃ¡rbol
+    //con raÃ­z en 'i' dentro de un array de tamaÃ±o 'n'.
     public static void heapify(int[] arr, int n, int i) {
         
         int largest = i;      

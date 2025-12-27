@@ -21,7 +21,7 @@ public class BinomioSuma {
       System.out.printf("El resultado de (a+b)^2 es: %.4f%n", resultado);
 
     } catch (InputMismatchException e) {
-      System.err.println("Error: Por favor, introduce valores numÈricos v·lidos.");
+      System.err.println("Error: Por favor, introduce valores num√©ricos v√°lidos.");
     } catch (Exception e) {
       System.err.println("Ha ocurrido un error inesperado.");
       e.printStackTrace();

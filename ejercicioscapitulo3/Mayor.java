@@ -1,5 +1,5 @@
 // fichero Mayor.java
-// Este programa calcula cuál es el número mayor de 10 introducidos por teclado 
+// Este programa calcula cuÃ¡l es el nÃºmero mayor de 10 introducidos por teclado 
 
 import java.util.Scanner;
 import java.util.InputMismatchException;
@@ -25,15 +25,15 @@ public class Mayor {
         try {
                        
             for (int i = 0; i < NUM_ELEMENTOS; i++) {
-                System.out.printf("Introduzca número %d de %d: ", i + 1, NUM_ELEMENTOS);                
+                System.out.printf("Introduzca nÃºmero %d de %d: ", i + 1, NUM_ELEMENTOS);                
                 numerosin[i] = sc.nextLong(); 
             }
         
             long maximo = mayor(numerosin);
-            System.out.println("\nEl número mayor de todos los introducidos es: " + maximo);            
+            System.out.println("\nEl nÃºmero mayor de todos los introducidos es: " + maximo);            
         
           } catch (InputMismatchException e) {
-            System.out.println("\nError de entrada: Debe introducir un número entero válido.");
+            System.out.println("\nError de entrada: Debe introducir un nÃºmero entero vÃ¡lido.");
         } catch (Exception e) {
             System.out.println("\n Ha ocurrido un error inesperado: " + e.getMessage());
         } finally {

@@ -1,5 +1,5 @@
 // fichero AreaCuadrado.java
-// Este programa calcula el área de un cuadrado con de uno de sus lados
+// Este programa calcula el Ã¡rea de un cuadrado con de uno de sus lados
 import java.util.Scanner;
 
 public class AreaCuadrado {
@@ -10,17 +10,17 @@ public class AreaCuadrado {
             System.out.print("Introduce el valor del lado de un cuadrado: ");
             double lado = sc.nextDouble();
             if (lado <= 0) {
-                System.err.println("Error: el lado debe ser un número positivo.");
+                System.err.println("Error: el lado debe ser un nÃºmero positivo.");
                 return;
             }
             double area = lado * lado;
-            System.out.printf("El área del cuadrado es: %.2f%n", area);
+            System.out.printf("El Ã¡rea del cuadrado es: %.2f%n", area);
         } 
         catch (java.util.InputMismatchException e) {
-           System.err.println("Error: Debes introducir un valor numérico válido.");
+           System.err.println("Error: Debes introducir un valor numÃ©rico vÃ¡lido.");
         }
         catch (Exception e) { 
-            System.err.println("Ocurrió un error inesperado.");
+            System.err.println("OcurriÃ³ un error inesperado.");
         }
         finally {
             sc.close();

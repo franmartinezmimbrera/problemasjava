@@ -2,7 +2,7 @@
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.SynchronousQueue;
 
-//Clase que representa al hilo Productor.Envía "mensajes" (los ítems) a un buzón síncrono.
+//Clase que representa al hilo Productor.EnvÃ­a "mensajes" (los Ã­tems) a un buzÃ³n sÃ­ncrono.
 class Productor extends Thread {
     
     private BlockingQueue<Integer> buzon;
@@ -18,14 +18,14 @@ class Productor extends Thread {
                 Thread.sleep((int) (Math.random() * 1000));
                 System.out.println("Productor produce: " + item + " e INTENTA ENVIAR...");
                 buzon.put(item); 
-                System.out.println("...Productor ENVIÓ " + item + " (El consumidor lo recibió)");
+                System.out.println("...Productor ENVIÃ“ " + item + " (El consumidor lo recibiÃ³)");
             }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
     }
 }
-//Clase que representa al hilo Consumidor. Recibe "mensajes" (los ítems) de un buzón síncrono.
+//Clase que representa al hilo Consumidor. Recibe "mensajes" (los Ã­tems) de un buzÃ³n sÃ­ncrono.
 class Consumidor extends Thread {
     
     private BlockingQueue<Integer> buzon;
@@ -38,7 +38,7 @@ class Consumidor extends Thread {
             while (true) {
                 System.out.println("Consumidor ESPERANDO para recibir...");
                 int item = buzon.take();
-                System.out.println("Consumidor RECIBIÓ: " + item);
+                System.out.println("Consumidor RECIBIÃ“: " + item);
                 Thread.sleep((int) (Math.random() * 1500)); 
             }
         } catch (InterruptedException e) {

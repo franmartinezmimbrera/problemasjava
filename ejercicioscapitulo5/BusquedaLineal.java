@@ -14,7 +14,7 @@ public class BusquedaLineal {
        System.out.println("Conjunto de datos: {10, 5, 20, 15, 8, 30}");
         indice = busquedaLineal(datos, n, objetivo1);
         if (indice != -1) {
-            System.out.printf("Resultado para %d: Encontrado en el índice %d.\n", objetivo1, indice);
+            System.out.printf("Resultado para %d: Encontrado en el Ã­ndice %d.\n", objetivo1, indice);
         } else {
             System.out.printf("Resultado para %d: No encontrado.\n", objetivo1);
         }

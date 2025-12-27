@@ -8,10 +8,10 @@ public class Saludo {
             InputStreamReader leer = new InputStreamReader(System.in);
             BufferedReader buff = new BufferedReader(leer);
 
-            System.out.println("¡Hola! ¿Cómo te llamas?");
+            System.out.println("Â¡Hola! Â¿CÃ³mo te llamas?");
             String nombre = buff.readLine();
 
-            System.out.println("Qué tal estás, " + nombre + "?");
+            System.out.println("QuÃ© tal estÃ¡s, " + nombre + "?");
         } catch (IOException ioex) {
             System.err.println("Error al leer la entrada: " + ioex.getMessage());
         }

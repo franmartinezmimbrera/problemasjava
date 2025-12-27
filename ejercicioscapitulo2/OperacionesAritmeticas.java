@@ -14,16 +14,16 @@ public class OperacionesAritmeticas {
             entradaValida = true; 
         } 
         catch (InputMismatchException e) {
-  System.err.println("Entrada inv·lida:deben ser valores numÈricos");
+  System.err.println("Entrada inv√°lida:deben ser valores num√©ricos");
         }
         if (entradaValida) {
             System.out.printf("Suma: %.2f%n", (valor1 + valor2));
             System.out.printf("Resta: %.2f%n", (valor1 - valor2));
-        System.out.printf("MultiplicaciÛn: %.2f%n", (valor1 * valor2));
+        System.out.printf("Multiplicaci√≥n: %.2f%n", (valor1 * valor2));
             if (valor2 == 0) {
                 System.out.println("No es posible dividir por 0");
             } else {
-                System.out.printf("DivisiÛn: %.2f%n", (valor1 / valor2));
+                System.out.printf("Divisi√≥n: %.2f%n", (valor1 / valor2));
             }
         }
         sc.close();

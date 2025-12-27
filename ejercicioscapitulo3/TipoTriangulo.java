@@ -1,5 +1,5 @@
 // fichero TipoTriangulo.java
-// Este programa calcula el tipo de triángulo en función de los lados
+// Este programa calcula el tipo de triÃ¡ngulo en funciÃ³n de los lados
 
 import java.util.Scanner;
 import java.util.InputMismatchException;
@@ -14,7 +14,7 @@ public class TipoTriangulo {
                (a + c > b) && 
                (b + c > a);
     }
-    // Función para comparar doubles con tolerancia
+    // FunciÃ³n para comparar doubles con tolerancia
     public static boolean iguales(double x, double y) {
         return Math.abs(x - y) < EPSILON;
     }
@@ -30,7 +30,7 @@ public class TipoTriangulo {
                     System.out.println("Error: el valor debe ser mayor que 0.");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Error: debes introducir un número válido.");
+                System.out.println("Error: debes introducir un nÃºmero vÃ¡lido.");
                 sc.next(); 
             }
         }
@@ -44,15 +44,15 @@ public class TipoTriangulo {
         l2 = leerLado(sc, "Introduce la longitud del segundo lado (l2): ");
         l3 = leerLado(sc, "Introduce la longitud del tercer lado (l3): ");
         if (!esTrianguloValido(l1, l2, l3)) {
-            System.out.println("\nError: los lados introducidos NO forman un triángulo válido.");            
+            System.out.println("\nError: los lados introducidos NO forman un triÃ¡ngulo vÃ¡lido.");            
             return;
         }
         if (iguales(l1, l2) && iguales(l2, l3)) {
-            System.out.println("El Triángulo es: EQUILÁTERO (Tres lados iguales)");
+            System.out.println("El TriÃ¡ngulo es: EQUILÃTERO (Tres lados iguales)");
         } else if (iguales(l1, l2) || iguales(l1, l3) || iguales(l2, l3)) {
-            System.out.println("El Triángulo es: ISÓSCELES (Dos lados iguales)");
+            System.out.println("El TriÃ¡ngulo es: ISÃ“SCELES (Dos lados iguales)");
         } else {
-            System.out.println("El Triángulo es: ESCALENO (Todos los lados diferentes)");
+            System.out.println("El TriÃ¡ngulo es: ESCALENO (Todos los lados diferentes)");
         }
         sc.close();
     }

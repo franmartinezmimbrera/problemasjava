@@ -1,12 +1,12 @@
 // fichero Combinatorio.java
-// Calcula el número combinatorio C(n, r) o "n sobre r" usando factorial iterativo
+// Calcula el nÃºmero combinatorio C(n, r) o "n sobre r" usando factorial iterativo
 import java.math.BigInteger;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Combinatorio {
 
-    // Función factorial iterativa
+    // FunciÃ³n factorial iterativa
     public static BigInteger factorial(BigInteger n) {
         if (n.equals(BigInteger.ZERO) || n.equals(BigInteger.ONE))
             return BigInteger.ONE;
@@ -19,7 +19,7 @@ public class Combinatorio {
         return resultado;
     }
 
-    // Cálculo de C(n, r) = n! / (r! * (n - r)!)
+    // CÃ¡lculo de C(n, r) = n! / (r! * (n - r)!)
     public static BigInteger combinatorio(int n, int r) {
         if (r < 0 || r > n) return BigInteger.ZERO;
         BigInteger bigN = BigInteger.valueOf(n);
@@ -33,20 +33,20 @@ public class Combinatorio {
         Scanner scanner = new Scanner(System.in);
         int n = 0, r = 0;
         try {
-            System.out.print("Introduce un número entero no negativo para n: ");
+            System.out.print("Introduce un nÃºmero entero no negativo para n: ");
             n = scanner.nextInt();
             if (n < 0) {
                 System.err.println("Error: n debe ser no negativo.");
                 return;
             }
-            System.out.print("Introduce un número entero no negativo para r: ");
+            System.out.print("Introduce un nÃºmero entero no negativo para r: ");
             r = scanner.nextInt();
             if (r < 0) {
                 System.err.println("Error: r debe ser no negativo.");
                 return;
             }
         } catch (InputMismatchException e) {
-            System.err.println("Error: Entrada no válida. Debe introducir un número entero.");
+            System.err.println("Error: Entrada no vÃ¡lida. Debe introducir un nÃºmero entero.");
             return;
         } finally {
             scanner.close();

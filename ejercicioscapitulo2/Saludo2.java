@@ -6,9 +6,9 @@ public class Saludo {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("¡Hola! ¿Cómo te llamas?");
+        System.out.println("Â¡Hola! Â¿CÃ³mo te llamas?");
         String nombre = sc.nextLine();
-        System.out.println("Qué tal estás " + nombre);
+        System.out.println("QuÃ© tal estÃ¡s " + nombre);
         sc.close();
         
     }

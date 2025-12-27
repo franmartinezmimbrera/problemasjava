@@ -1,6 +1,6 @@
 // fichero BInterpola.java 
 public class BInterpola {
-    //Realiza la Búsqueda por Interpolación en un array ordenado uniformemente distribuido.
+    //Realiza la BÃºsqueda por InterpolaciÃ³n en un array ordenado uniformemente distribuido.
     public static int busquedaInterpolacion(int[] arr, int n, int objetivo) {
         int bajo = 0;
         int alto = n - 1;
@@ -18,7 +18,7 @@ public class BInterpola {
                 else
                     return -1;
             }
-            // Fórmula de interpolación
+            // FÃ³rmula de interpolaciÃ³n
             pos = bajo + (int)(((double)(alto - bajo) / (arr[alto] - arr[bajo])) * (objetivo - arr[bajo]));
             if (pos < 0 || pos >= n) {
                 return -1; 
@@ -41,7 +41,7 @@ public class BInterpola {
 System.out.println("Conjunto de datos (Ordenado):{10,20,30,...,100}");
         int indice = busquedaInterpolacion(datosOrdenados, n, objetivo1);
         if (indice != -1) {
-            System.out.printf("Resultado para %d: Encontrado en el índice %d.%n", objetivo1, indice);
+            System.out.printf("Resultado para %d: Encontrado en el Ã­ndice %d.%n", objetivo1, indice);
         } else {
             System.out.printf("Resultado para %d: No encontrado.%n", objetivo1);
         }

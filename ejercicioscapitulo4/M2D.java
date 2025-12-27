@@ -17,7 +17,7 @@ public class M2D {
                 matriz[i][j] = i * N + j + 1;
             }
         }
-        System.out.println("\nMatriz Din·mica " + M + "x" + N);
+        System.out.println("\nMatriz Din√°mica " + M + "x" + N);
         for (int i = 0; i < M; i++) {
             for (int j = 0; j < N; j++) {
                 System.out.printf("%3d ", matriz[i][j]);
@@ -25,6 +25,6 @@ public class M2D {
             System.out.println();
         }
 
-        System.out.println("Memoria de la matriz liberada autom·ticamente por el Garbage Collector.");
+        System.out.println("Memoria de la matriz liberada autom√°ticamente por el Garbage Collector.");
     }
 }

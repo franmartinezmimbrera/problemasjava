@@ -14,12 +14,12 @@ public class Capturar {
             sc.nextLine(); 
             System.out.print("Color favorito: ");
             String color = sc.nextLine();
-            System.out.println("¡El " + color + "!!!");
-            System.out.printf("¿Cómo puede gustarte el %s con %d años y pesando %.2f Kg.?%n",
+            System.out.println("Â¡El " + color + "!!!");
+            System.out.printf("Â¿CÃ³mo puede gustarte el %s con %d aÃ±os y pesando %.2f Kg.?%n",
                               color, edad, peso);
         } 
         catch (Exception e) {
-            System.err.println("Entrada no válida. Asegúrate de introducir los datos correctamente.");
+            System.err.println("Entrada no vÃ¡lida. AsegÃºrate de introducir los datos correctamente.");
         } 
         finally {
             sc.close();

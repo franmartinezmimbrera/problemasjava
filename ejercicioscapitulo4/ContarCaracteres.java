@@ -1,5 +1,5 @@
 // fichero ContarCar.java
-//Ejemplo para leer un fichero car·cter a car·cter y contar caracteres y palabras.
+//Ejemplo para leer un fichero car√°cter a car√°cter y contar caracteres y palabras.
 import java.io.FileReader;
 import java.io.IOException;
 public class ContarCaracteres {
@@ -23,7 +23,7 @@ public class ContarCaracteres {
             System.err.println("Error al abrir el archivo datos.txt: " + e.getMessage());
             System.exit(1);
         }
-        System.out.println("Total de caracteres leÌdos: " + contador_caracteres);
+        System.out.println("Total de caracteres le√≠dos: " + contador_caracteres);
         System.out.println("Total de palabras: " + contador_palabras);
     }
 }

@@ -1,5 +1,5 @@
 // fichero AreaCircunferencia.java
-// Este programa calcula el ·rea de una circunferencia dado un radio v·lido
+// Este programa calcula el √°rea de una circunferencia dado un radio v√°lido
 
 import java.util.Scanner;
 import java.util.InputMismatchException;
@@ -24,9 +24,9 @@ public class AreaCircunferencia {
                 System.out.print("Introduzca radio: ");
                 radio = sc.nextDouble();
             }
-            System.out.printf("El ·rea de la circunferencia es: %.2f\n", AreaCircunferencia_(radio));
+            System.out.printf("El √°rea de la circunferencia es: %.2f\n", AreaCircunferencia_(radio));
         } catch (InputMismatchException e) {
-            System.out.println("Error: debes introducir un valor numÈrico v·lido para el radio.");
+            System.out.println("Error: debes introducir un valor num√©rico v√°lido para el radio.");
         } finally {
             sc.close();
         }

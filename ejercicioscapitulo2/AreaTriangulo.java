@@ -1,5 +1,5 @@
 // fichero AreaTriangulo.java
-// Este programa calcula el área de un triángulo a partir de sus lados mediante la fórmula de Herón
+// Este programa calcula el Ã¡rea de un triÃ¡ngulo a partir de sus lados mediante la fÃ³rmula de HerÃ³n
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
@@ -19,21 +19,21 @@ public class AreaTriangulo {
       double l3 = scanner.nextDouble();
       
       if (l1 <= 0 || l2 <= 0 || l3 <= 0) {
-        System.err.println("Error: Los lados del triángulo deben ser positivos.");
+        System.err.println("Error: Los lados del triÃ¡ngulo deben ser positivos.");
         return;
       }
 
       if (l1 + l2 <= l3 || l1 + l3 <= l2 || l2 + l3 <= l1) {
-        System.err.println("Error: Los lados introducidos no forman un triángulo válido.");
+        System.err.println("Error: Los lados introducidos no forman un triÃ¡ngulo vÃ¡lido.");
         return;
       }
 
       double sp = (l1 + l2 + l3) / 2.0;
       double area = Math.sqrt(sp * (sp - l1) * (sp - l2) * (sp - l3));
-      System.out.printf("El área del triángulo es: %.4f%n", area);
+      System.out.printf("El Ã¡rea del triÃ¡ngulo es: %.4f%n", area);
 
     } catch (InputMismatchException e) {
-          System.err.println("Error: Por favor, introduce valores numéricos válidos.");
+          System.err.println("Error: Por favor, introduce valores numÃ©ricos vÃ¡lidos.");
     } catch (Exception e) {
           System.err.println("Ha ocurrido un error inesperado.");
           e.printStackTrace();

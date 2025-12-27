@@ -1,5 +1,5 @@
 // fichero ParImpar.java
-// Este programa indica si un número entero es par o impar
+// Este programa indica si un nÃºmero entero es par o impar
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
@@ -9,15 +9,15 @@ public class ParImpar {
 
     try (Scanner scanner = new Scanner(System.in)) {
 
-      System.out.print("Introduzca un número entero: ");
+      System.out.print("Introduzca un nÃºmero entero: ");
       int numero = scanner.nextInt();
       if (numero % 2 == 0) {
-        System.out.println("El número " + numero + " es PAR");
+        System.out.println("El nÃºmero " + numero + " es PAR");
       } else {
-        System.out.println("El número " + numero + " es IMPAR");
+        System.out.println("El nÃºmero " + numero + " es IMPAR");
       }
     } catch (InputMismatchException e) {
-        System.err.println("Error: Por favor, introduzca un número entero válido.");
+        System.err.println("Error: Por favor, introduzca un nÃºmero entero vÃ¡lido.");
     } catch (Exception e) {
         System.err.println("Ha ocurrido un error inesperado.");
         e.printStackTrace();

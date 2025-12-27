@@ -5,7 +5,7 @@ public class MultiplicaMatrices {
         
         int N = A.length;
         if (N == 0 || A[0].length != N || B.length != N || B[0].length != N) {
-            System.err.println("Error: Las matrices deben ser cuadradas (N x N) y tener el mismo tamaño.");
+            System.err.println("Error: Las matrices deben ser cuadradas (N x N) y tener el mismo tamaÃ±o.");
             return null;
         }
         int[][] C = new int[N][N];
@@ -46,7 +46,7 @@ public class MultiplicaMatrices {
             {0, 0, 0, 1} 
         };
         int N_actual = A.length;
-        System.out.printf("Multiplicación de Matrices Cuadradas (%dx%d x %dx%d) ---%n", 
+        System.out.printf("MultiplicaciÃ³n de Matrices Cuadradas (%dx%d x %dx%d) ---%n", 
                           N_actual, N_actual, N_actual, N_actual);
         System.out.println("\nMatriz A:");
         imprimirMatriz(A);

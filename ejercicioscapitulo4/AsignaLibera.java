@@ -11,12 +11,12 @@ public class AsignaLibera {
             System.out.println("Error: No hay suficiente memoria para crear el array.");
             System.exit(1);
         }
-        System.out.println("Vector Din·mico de " + N + " Elementos");
+        System.out.println("Vector Din√°mico de " + N + " Elementos");
         for (int i = 0; i < N; i++) {
             vector[i] = i * 10;
             System.out.print(vector[i] + " ");
         }
         System.out.println();
-        System.out.println("Memoria liberada autom·ticamente por el Garbage Collector.");
+        System.out.println("Memoria liberada autom√°ticamente por el Garbage Collector.");
     }
 }

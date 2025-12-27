@@ -24,13 +24,13 @@ public class BusquedaBinaria {
         System.out.println("Conjunto de datos (Ordenado): {5, 8, 12, 15, 20, 30, 40}");
         int indice = busquedaBinaria(datosOrdenados, objetivo1);
         if (indice != -1) {
-            System.out.printf("Resultado para %d: Encontrado en el índice %d.%n", objetivo1, indice);
+            System.out.printf("Resultado para %d: Encontrado en el Ã­ndice %d.%n", objetivo1, indice);
         } else {
             System.out.printf("Resultado para %d: No encontrado.%n", objetivo1);
         }
         indice = busquedaBinaria(datosOrdenados, objetivo2);
         if (indice != -1) {
-            System.out.printf("Resultado para %d: Encontrado en el índice %d.%n", objetivo2, indice);
+            System.out.printf("Resultado para %d: Encontrado en el Ã­ndice %d.%n", objetivo2, indice);
         } else {
             System.out.printf("Resultado para %d: No encontrado.%n", objetivo2);
         }

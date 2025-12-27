@@ -1,6 +1,6 @@
 // fichero ShellSort.java 
 public class ShellSort {
-    //Implementación del algoritmo Shellsort usando la secuencia de Knuth (3*h + 1). 
+    //ImplementaciÃ³n del algoritmo Shellsort usando la secuencia de Knuth (3*h + 1). 
     public static void shellsortKnuth(int[] arr) {
         int n = arr.length,h = 1;
         while (h < n / 3) {

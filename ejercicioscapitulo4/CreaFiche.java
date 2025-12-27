@@ -10,11 +10,11 @@ public class CreaFiche {
         
         try (PrintWriter archivo = new PrintWriter(new FileWriter("datos.txt"))) {
             
-            archivo.println("Esta es la primera línea.");
+            archivo.println("Esta es la primera lÃ­nea.");
             
-            archivo.printf("El número PI es aproximadamente %.4f%s", 3.14159, System.lineSeparator());
+            archivo.printf("El nÃºmero PI es aproximadamente %.4f%s", 3.14159, System.lineSeparator());
             
-            archivo.println("Tercera línea de ejemplo.");
+            archivo.println("Tercera lÃ­nea de ejemplo.");
 
         } catch (IOException e) {
             System.err.println("Error al abrir/crear el archivo datos.txt: " + e.getMessage());

@@ -1,23 +1,23 @@
 // fichero AreaTriangulo1.java
-// Este programa calcula el área de un triángulo rectángulo a partir de la base y la altura
+// Este programa calcula el Ã¡rea de un triÃ¡ngulo rectÃ¡ngulo a partir de la base y la altura
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
 public class AreaTriangulo1 {
   public static void main(String[] args) {
     try (Scanner scanner = new Scanner(System.in)) {
-      System.out.print("Introduce la base del triángulo rectángulo: ");
+      System.out.print("Introduce la base del triÃ¡ngulo rectÃ¡ngulo: ");
       double base = scanner.nextDouble();
-      System.out.print("Introduce la altura del triángulo rectángulo: ");
+      System.out.print("Introduce la altura del triÃ¡ngulo rectÃ¡ngulo: ");
       double altura = scanner.nextDouble();
       if (base <= 0 || altura <= 0) {
         System.err.println("Error: La base y la altura deben ser valores positivos.");
         return;
       }
       double area = (base * altura) / 2.0;
-      System.out.printf("El área del triángulo rectángulo es: %.4f%n", area);
+      System.out.printf("El Ã¡rea del triÃ¡ngulo rectÃ¡ngulo es: %.4f%n", area);
     } catch (InputMismatchException e) {
-        System.err.println("Error: Por favor, introduce valores numéricos válidos.");
+        System.err.println("Error: Por favor, introduce valores numÃ©ricos vÃ¡lidos.");
     } catch (Exception e) {
         System.err.println("Ha ocurrido un error inesperado.");
         e.printStackTrace();

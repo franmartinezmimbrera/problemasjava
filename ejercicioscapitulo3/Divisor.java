@@ -1,5 +1,5 @@
 // fichero Divisor.java
-// Este programa calcula si un número a es divisor de otro número b
+// Este programa calcula si un nÃºmero a es divisor de otro nÃºmero b
 import java.util.Scanner;
 public class Divisor {
     public static boolean divisible(long a, long b) {
@@ -20,7 +20,7 @@ public class Divisor {
                 System.out.println(a + " NO es divisible entre " + b);
             }
         } catch (java.util.InputMismatchException e) {
-            System.out.println("Error: debe introducir números enteros.");
+            System.out.println("Error: debe introducir nÃºmeros enteros.");
         } finally {
             sc.close();
         }

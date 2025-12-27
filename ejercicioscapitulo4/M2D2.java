@@ -21,7 +21,7 @@ public class M2D2 {
             System.exit(1);
         }
 
-        System.out.println("\nMatriz Din·mica con ArrayList " + M + "x" + N);
+        System.out.println("\nMatriz Din√°mica con ArrayList " + M + "x" + N);
         for (ArrayList<Integer> fila : matriz) {
             for (Integer valor : fila) {
                 System.out.printf("%3d ", valor);

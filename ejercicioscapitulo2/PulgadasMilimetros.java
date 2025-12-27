@@ -1,5 +1,5 @@
 // fichero PulgadasMilimetros.java 
-// Este programa cambia pulgadas por milímetros
+// Este programa cambia pulgadas por milÃ­metros
 import java.util.Scanner;
 
 public class PulgadasMilimetros {
@@ -14,11 +14,11 @@ public class PulgadasMilimetros {
                 System.err.println("Error: el valor no puede ser negativo.");
             } else {
                 double milimetros = FACTOR_CONVERSION * pulgadas;
-                System.out.printf("El resultado en milímetros es: %.2f%n", milimetros);
+                System.out.printf("El resultado en milÃ­metros es: %.2f%n", milimetros);
             }
         } 
         catch (Exception e) {
-            System.err.println("Error: Debe introducir un número válido.");
+            System.err.println("Error: Debe introducir un nÃºmero vÃ¡lido.");
         } 
         finally {
             sc.close();

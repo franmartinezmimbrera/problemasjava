@@ -4,22 +4,22 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Ecuaciones {
-    // Procedimiento que calcula y muestra las ra韈es reales de la ecuaci髇
+    // Procedimiento que calcula y muestra las ra铆ces reales de la ecuaci贸n
     static void resolverEcuacion(double a, double b, double c) {
         double d = b * b - 4 * a * c; 
         System.out.printf("Discriminante (d) = %.4f%n", d);
         if (d > 0) {
             double x1 = (-b + Math.sqrt(d)) / (2 * a);
             double x2 = (-b - Math.sqrt(d)) / (2 * a);
-            System.out.println("La ecuaci髇 tiene dos soluciones reales distintas:");
+            System.out.println("La ecuaci贸n tiene dos soluciones reales distintas:");
             System.out.printf("x1 = %.4f%n", x1);
             System.out.printf("x2 = %.4f%n", x2);
         } else if (Math.abs(d) < 1e-10) {
             double x = -b / (2 * a);
-            System.out.println("La ecuaci髇 tiene una 鷑ica soluci髇 real (ra韟 doble):");
+            System.out.println("La ecuaci贸n tiene una 煤nica soluci贸n real (ra铆z doble):");
             System.out.printf("x = %.4f%n", x);
         } else {
-            System.out.println("La ecuaci髇 no tiene soluciones reales (el discriminante es negativo).");
+            System.out.println("La ecuaci贸n no tiene soluciones reales (el discriminante es negativo).");
         }
     }
     public static void main(String[] args) {
@@ -30,12 +30,12 @@ public class Ecuaciones {
                 System.out.print("Ingrese coeficiente a: ");
                 a = scanner.nextDouble();
                 if (Math.abs(a) < 1e-10) {
-                    System.out.println("Error:El coeficiente 'a' no puede ser cero (no ser韆 una ecuaci髇 cuadr醫ica).");
+                    System.out.println("Error:El coeficiente 'a' no puede ser cero (no ser铆a una ecuaci贸n cuadr谩tica).");
                 } else {
                     break; 
                 }
             } catch (InputMismatchException e) {
-                System.err.println("Error: debe introducir un n鷐ero v醠ido.");
+                System.err.println("Error: debe introducir un n煤mero v谩lido.");
                 scanner.next(); 
             }
         }
@@ -46,7 +46,7 @@ public class Ecuaciones {
             System.out.print("Ingrese coeficiente c: ");
             c = scanner.nextDouble();
         } catch (InputMismatchException e) {
-            System.err.println("Error: la entrada no es v醠ida para b o c.");
+            System.err.println("Error: la entrada no es v谩lida para b o c.");
             scanner.close();
             return;
         }

@@ -2,13 +2,13 @@
 import java.util.Random;
 
 /**
- * Monitor que implementa la soluciÛn del CAMARERO (¡rbitro).
- * Clave: Limita el n˙mero de comensales sentados a (N-1) para evitar interbloqueo.
+ * Monitor que implementa la soluci√≥n del CAMARERO (√Årbitro).
+ * Clave: Limita el n√∫mero de comensales sentados a (N-1) para evitar interbloqueo.
  */
 class MesaCamarero {
 
     public static final int N_FILOSOFOS = 5;
-    // Sem·foro lÛgico (aforo): M·ximo 4 filÛsofos sentados a la vez
+    // Sem√°foro l√≥gico (aforo): M√°ximo 4 fil√≥sofos sentados a la vez
     private static final int AFORO_MAXIMO = N_FILOSOFOS - 1; 
     
     private final boolean[] palillosLibres = new boolean[N_FILOSOFOS];
@@ -23,24 +23,24 @@ class MesaCamarero {
     /**
      * Intenta coger los palillos.
      * 1. Primero pide permiso para sentarse (si hay 4 sentados, espera).
-     * 2. Luego intenta coger los palillos (si est·n ocupados, espera).
+     * 2. Luego intenta coger los palillos (si est√°n ocupados, espera).
      */
     public synchronized void cogerPalillos(int id) throws InterruptedException {
         int izq = id;
         int der = (id + 1) % N_FILOSOFOS;
 
-        // Si la mesa est· casi llena (4 personas), el 5∫ se queda de pie esperando.
+        // Si la mesa est√° casi llena (4 personas), el 5¬∫ se queda de pie esperando.
         while (comensalesSentados >= AFORO_MAXIMO) {
-            System.out.println("    FilÛsofo " + id + " ESPERA DE PIE (Mesa llena: " + comensalesSentados + " comensales).");
+            System.out.println("    Fil√≥sofo " + id + " ESPERA DE PIE (Mesa llena: " + comensalesSentados + " comensales).");
             wait();
         }       
-        // Si pasa aquÌ, se sienta
+        // Si pasa aqu√≠, se sienta
         comensalesSentados++;
-        System.out.println("FilÛsofo " + id + " se sienta a la mesa (Hay " + comensalesSentados + " sentados).");
+        System.out.println("Fil√≥sofo " + id + " se sienta a la mesa (Hay " + comensalesSentados + " sentados).");
 
-        // Ahora que est· sentado, intenta coger los tenedores.
+        // Ahora que est√° sentado, intenta coger los tenedores.
         while (!palillosLibres[izq] || !palillosLibres[der]) {
-            System.out.println("    FilÛsofo " + id + " espera cubiertos (Sentado, pero sin tenedores).");
+            System.out.println("    Fil√≥sofo " + id + " espera cubiertos (Sentado, pero sin tenedores).");
             wait();
         }
 
@@ -48,7 +48,7 @@ class MesaCamarero {
         palillosLibres[izq] = false;
         palillosLibres[der] = false;
         
-        System.out.println("FilÛsofo " + id + " COGI” los palillos " + izq + " y " + der);
+        System.out.println("Fil√≥sofo " + id + " COGI√ì los palillos " + izq + " y " + der);
     }
 
     /**
@@ -64,7 +64,7 @@ class MesaCamarero {
 
         comensalesSentados--; // Deja un hueco libre en la mesa
         
-        System.out.println("FilÛsofo " + id + " soltÛ palillos y SE LEVANT” (Quedan " + comensalesSentados + " sentados).");
+        System.out.println("Fil√≥sofo " + id + " solt√≥ palillos y SE LEVANT√ì (Quedan " + comensalesSentados + " sentados).");
         
         // Avisa a todos:
         // - A los que esperan de pie (wait del aforo)
@@ -84,12 +84,12 @@ class Filosofo extends Thread {
     }
 
     private void pensar() throws InterruptedException {
-        System.out.println("FilÛsofo " + id + " est· PENSANDO ...");
+        System.out.println("Fil√≥sofo " + id + " est√° PENSANDO ...");
         Thread.sleep(random.nextInt(1000) + 500); 
     }
 
     private void comer() throws InterruptedException {
-        System.out.println("FilÛsofo " + id + " est· COMIENDO ...");
+        System.out.println("Fil√≥sofo " + id + " est√° COMIENDO ...");
         Thread.sleep(random.nextInt(1000) + 500); 
     }
 
@@ -98,22 +98,22 @@ class Filosofo extends Thread {
         try {
             while (true) {
                 pensar();
-                System.out.println("FilÛsofo " + id + " tiene HAMBRE.");
+                System.out.println("Fil√≥sofo " + id + " tiene HAMBRE.");
                 
                 mesa.cogerPalillos(id);
                 comer();
                 mesa.soltarPalillos(id);
             }
         } catch (InterruptedException e) {
-            System.out.println("FilÛsofo " + id + " fue interrumpido.");
+            System.out.println("Fil√≥sofo " + id + " fue interrumpido.");
         }
     }
 }
 
 public class Mcf {
     public static void main(String[] args) {
-        System.out.println("EJEMPLO CENA DE LOS FIL”SOFOS (SOLUCI”N DEL CAMARERO/AFORO) ");
-        System.out.println("  Mesa para " + MesaCamarero.N_FILOSOFOS + " filÛsofos.");
+        System.out.println("EJEMPLO CENA DE LOS FIL√ìSOFOS (SOLUCI√ìN DEL CAMARERO/AFORO) ");
+        System.out.println("  Mesa para " + MesaCamarero.N_FILOSOFOS + " fil√≥sofos.");
         System.out.println("  El camarero solo deja sentarse a " + (MesaCamarero.N_FILOSOFOS - 1) + " a la vez.\n");
 
         MesaCamarero mesa = new MesaCamarero();

@@ -1,5 +1,5 @@
 // fichero Conteo.java
-// Lee varias frases, las convierte a mayúsculas y cuenta las vocales.
+// Lee varias frases, las convierte a mayÃºsculas y cuenta las vocales.
 
 import java.util.Scanner;
 public class Conteo {
@@ -15,7 +15,7 @@ public class Conteo {
         }
         return resultado.toString();
     }
-    // Cuenta las vocales (A, E, I, O, U) en una cadena ya en mayúsculas
+    // Cuenta las vocales (A, E, I, O, U) en una cadena ya en mayÃºsculas
     public static int contarVocales(String s) {
         int contador = 0;
         for (int i = 0; i < s.length(); i++) {
@@ -41,12 +41,12 @@ public class Conteo {
         String[] listaFrases = new String[NUM_FRASES];
         int totalVocales = 0;
 
-        System.out.printf("Introduce %d frases/líneas de texto:%n", NUM_FRASES);
+        System.out.printf("Introduce %d frases/lÃ­neas de texto:%n", NUM_FRASES);
         for (int i = 0; i < NUM_FRASES; i++) {
             System.out.printf("Frase %d: ", i + 1);
             String linea = sc.nextLine();
             if (linea.length() > MAX_LONGITUD) {
-                System.out.printf("Advertencia: se truncará a %d caracteres.%n", MAX_LONGITUD);
+                System.out.printf("Advertencia: se truncarÃ¡ a %d caracteres.%n", MAX_LONGITUD);
                 linea = linea.substring(0, MAX_LONGITUD);
             }
             listaFrases[i] = linea;
@@ -57,11 +57,11 @@ public class Conteo {
             String mayus = convertirAMayusculas(frase);
             int vocales = contarVocales(mayus);
             totalVocales += vocales;
-            System.out.printf("Frase %d (MAYÚS): '%s' -> Vocales contadas: %d%n",
+            System.out.printf("Frase %d (MAYÃšS): '%s' -> Vocales contadas: %d%n",
                     i + 1, mayus, vocales);
         }
         
-        System.out.printf("El número total de vocales en todas las frases es: %d%n", totalVocales);
+        System.out.printf("El nÃºmero total de vocales en todas las frases es: %d%n", totalVocales);
         sc.close();
     }
 }

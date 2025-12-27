@@ -11,10 +11,10 @@ class BufferCompartido {
         this.capacidad = capacidad;
     }
     /**
-     * MÈtodo sincronizado para producir un elemento.
-     * El productor espera si el buffer est· lleno.*/
+     * M√©todo sincronizado para producir un elemento.
+     * El productor espera si el buffer est√° lleno.*/
     public synchronized void producir(int item) throws InterruptedException {
-        // Esperar mientras el buffer estÈ lleno
+        // Esperar mientras el buffer est√© lleno
         // Usamos while (no if) para proteger contra "spurious wakeups"
         while (buffer.size() == capacidad) {
             System.out.println(Thread.currentThread().getName() + 
@@ -30,13 +30,13 @@ class BufferCompartido {
         notifyAll(); // Despierta a todos los hilos en espera
     }
     /**
-     * MÈtodo sincronizado para consumir un elemento.
-     * El consumidor espera si el buffer est· vacÌo.*/
+     * M√©todo sincronizado para consumir un elemento.
+     * El consumidor espera si el buffer est√° vac√≠o.*/
     public synchronized int consumir() throws InterruptedException {
-        // Esperar mientras el buffer estÈ vacÌo
+        // Esperar mientras el buffer est√© vac√≠o
         while (buffer.isEmpty()) {
             System.out.println(Thread.currentThread().getName() + 
-                             " - Buffer vacÌo. Consumidor esperando...");
+                             " - Buffer vac√≠o. Consumidor esperando...");
             wait();
         }
         // Extraer el item del buffer
@@ -63,12 +63,12 @@ class Productor implements Runnable {
     public void run() {
         try {
             for (int i = 1; i <= itemsAPrducir; i++) {
-                // Simular tiempo de producciÛn
+                // Simular tiempo de producci√≥n
                 Thread.sleep((long)(Math.random() * 1000));
                 
                 buffer.producir(i);
             }
-            System.out.println(Thread.currentThread().getName() + " - °ProducciÛn completada!");
+            System.out.println(Thread.currentThread().getName() + " - ¬°Producci√≥n completada!");
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             System.err.println("Productor interrumpido");
@@ -94,7 +94,7 @@ class Consumidor implements Runnable {
                 // Simular tiempo de procesamiento
                 Thread.sleep((long)(Math.random() * 1500));
             }
-            System.out.println(Thread.currentThread().getName() + " - °Consumo completado!");
+            System.out.println(Thread.currentThread().getName() + " - ¬°Consumo completado!");
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             System.err.println("Consumidor interrumpido");
@@ -132,6 +132,6 @@ public class Mpc{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("\n°Ejemplo completado!\n");
+        System.out.println("\n¬°Ejemplo completado!\n");
     }
 }

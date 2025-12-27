@@ -1,12 +1,12 @@
 // fichero AlturaTriangulo.java
-// Este programa calcula la altura de un triángulo equilátero
+// Este programa calcula la altura de un triÃ¡ngulo equilÃ¡tero
 import java.util.Scanner;
 import java.util.InputMismatchException;
 public class AlturaTriangulo {
   public static void main(String[] args) {
     try (Scanner scanner = new Scanner(System.in)) {
     
-      System.out.print("Introduzca el lado de un triángulo equilátero: ");
+      System.out.print("Introduzca el lado de un triÃ¡ngulo equilÃ¡tero: ");
       double lado = scanner.nextDouble();
     
       if (lado <= 0) {
@@ -14,10 +14,10 @@ public class AlturaTriangulo {
         return;
       }
       double altura = (Math.sqrt(3) * lado) / 2.0;
-      System.out.printf("La altura de un triángulo equilátero de lado %.4f es: %.4f%n", lado, altura);
+      System.out.printf("La altura de un triÃ¡ngulo equilÃ¡tero de lado %.4f es: %.4f%n", lado, altura);
     
     } catch (InputMismatchException e) {
-        System.err.println("Error: Por favor, introduzca un valor numérico válido.");
+        System.err.println("Error: Por favor, introduzca un valor numÃ©rico vÃ¡lido.");
     } catch (Exception e) {
         System.err.println("Ha ocurrido un error inesperado.");
         e.printStackTrace();

@@ -2,13 +2,13 @@
 
 public class QSort {
 
-    // Función de intercambio (swap)
+    // Funciï¿½n de intercambio (swap)
     public static void swap(int[] arr, int i, int j) {
         int t = arr[i];
         arr[i] = arr[j];
         arr[j] = t;
     }
-    // Función de partición
+    // Funciï¿½n de particiï¿½n
     public static int particion(int[] arr, int bajo, int alto) {
         int pivote = arr[alto];
         int i = bajo - 1;
@@ -22,7 +22,7 @@ public class QSort {
         swap(arr, i + 1, alto);
         return i + 1;
     }
-    // Función recursiva Quicksort
+    // Funciï¿½n recursiva Quicksort
     public static void quicksort(int[] arr, int bajo, int alto) {
         if (bajo < alto) {
             int pi = particion(arr, bajo, alto);

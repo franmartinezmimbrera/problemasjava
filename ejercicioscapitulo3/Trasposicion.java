@@ -1,10 +1,10 @@
 // fichero Trasposicion.java
-// Trasposición de una matriz de enteros
+// TrasposiciÃ³n de una matriz de enteros
 public class Trasposicion {
 
     private static final int R_FILAS = 3;
     private static final int C_COLUMNAS = 4;
-    // Función que traspone una matriz de tamaño filas_orig x cols_orig
+    // FunciÃ³n que traspone una matriz de tamaÃ±o filas_orig x cols_orig
     public static void trasponerMatriz(int filas_orig, int cols_orig, int[][] original, int[][] transpuesta) {
         for (int i = 0; i < filas_orig; i++) {
             for (int j = 0; j < cols_orig; j++) {
