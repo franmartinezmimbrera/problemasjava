@@ -6,9 +6,9 @@ import java.util.InputMismatchException;
 
 public class Mayor {
 
-    public static long mayor(int[] numeros) {
+    public static long mayor(long[] numeros) {
         long max = numeros[0];
-        for (long i = 1; i < numeros.length; i++) {
+        for (int i = 1; i < numeros.length; i++) {
             if (numeros[i] > max) {
                 max = numeros[i]; 
             }

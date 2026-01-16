@@ -3,7 +3,7 @@
 import java.util.Scanner;
 public class Divisor {
     public static boolean divisible(long a, long b) {
-        return b != 0 && a % b == 0;
+        return b != 0 && b % a == 0;
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
